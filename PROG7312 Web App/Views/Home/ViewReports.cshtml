@@ -1,0 +1,62 @@
+﻿@using PROG7312_Web_App.Data;
+@model List<PROG7312_Web_App.Data.ReportNode>;
+
+<div class="container view-report">
+    <div class="header">
+        <h1>Community Reports</h1>
+        <p>Track the issues and services requests that you and the community have submitted.</p>
+    </div>
+    <div class="reports">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var report in Model)
+            {
+                <div class="item">
+                    <div class="content">
+                        <h3>@report.Title</h3>
+                        <p>@report.Description</p>
+                        <div class="info">
+                            <div class="category">@report.Category</div>
+                            <div class="location"><i class="bi bi-geo-alt me-2" style="font-size: 30px"></i>@report.Location</div>
+                            <div class="status">
+                                Status: 
+                                @if (report.Status == "In Progress")
+                                {
+                                    <span class="badge ms-3 fs-5 fw-normal p-3 text-bg-warning">@report.Status</span>
+                                }
+                                else if (report.Status == "On Going")
+                                {
+                                    <span class="badge ms-3 fs-5 fw-normal p-3 text-bg-danger">@report.Status</span>
+                                }
+                                else if (report.Status == "Complete")
+                                {
+                                    <span class="badge ms-3 fs-5 fw-normal p-3 text-bg-success">@report.Status</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="more-content">
+                        <div class="attachment-image">
+                            <img src="data:image/jpeg;base64,@report.Attachment" alt="Report Attachment" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px" />
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="item">
+                <div class="content">
+                    <h3>No reports have been submitted yet.</h3>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@* <form>
+    <button class="btn-attachment">
+        <i class="bi bi-paperclip"></i>
+        Attachment
+    </button>
+</form> *@

@@ -4,7 +4,7 @@
 
 <section class="hero" id="hero">
     <div class="hero-background">
-        <img src="~/images/City.jpg" alt="" data-aos-duration="1000">
+        <img src="~/images/CapeTown.jpg" alt="" data-aos-duration="1000">
     </div>
 
     <div class="container">
@@ -12,8 +12,8 @@
 
             <div class="col me-5">
                 <div class="container-fluid p-2">
-                    <h1 class="display-5 text-white fw-bold">This the Hero Section Title</h1>
-                    <p class="text-white text-opacity-75 mt-4 me-5 fw-semibold fs-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et turpis ex. Vestibulum ante ipsum primis in faucibus  Fusce ac orci at dolor consequat pretium porttitor eu eros. Sed rutrum risus at facilisis cursus. Aliquam ut purus pulvinar, fringilla ligula at, iaculis mauris.</p>
+                    <h1 class="display-5 text-white fw-bold">Cape Town Municipal Services</h1>
+                    <p class="text-white text-opacity-75 mt-4 me-5 fw-semibold fs-4">Track and report issues in Cape Town with ease. Submit service requests, report public concerns, and stay informed on the city's progress—all in one place.</p>
                     <form asp-fragment="services">
                         <button class="btn mt-5 btn-hero">
                             Explore our Features
@@ -71,7 +71,6 @@
             </button>
         </form>
     </div>
-
 </section>
 
 <section class="service-status" id="service-status">
@@ -79,12 +78,13 @@
         <div class="service-status-header">
             <h1 class="display-5 fw-normal">Status of Requested Services and Reports</h1>
             <p class="mb-5 fs-5">View the progress and current status of your requested services and reports!</p>
+            <form asp-controller="Home" asp-action="ViewReports">
+                <button class="btn btn-dark p-4 fs-5">
+                    View all Reports
+                </button>
+            </form>
         </div>
     </div>
-
-    <div class="container">
-    </div>
-
 </section>
 
 <section class="recent-reports">

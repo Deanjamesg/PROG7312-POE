@@ -1,0 +1,80 @@
+﻿@using PROG7312_Web_App.ViewModels;
+@model ReportViewModel;
+@{
+    ViewData["Title"] = "Report an Issue";
+    var success = TempData["SuccessMessage"];
+}
+
+<form class="container report-form" asp-controller="Home" asp-action="SubmitReport" enctype="multipart/form-data" method="post" autocomplete="off">
+
+    <div class="header">Report Form</div>
+    <div class="content">
+        <div class="row g-5">
+            <div class="col">
+                <div class="mb-4">
+                    <label asp-for="FirstName" class="form-label">First Name</label>
+                    <input asp-for="FirstName" class="form-control" placeholder="First Name" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="LastName" class="form-label">Last Name</label>
+                    <input asp-for="LastName" class="form-control" placeholder="Last Name" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label" asp-for="Title">Title of Report</label>
+                    <input class="form-control" asp-for="Title" placeholder="e.g. Car Accident on R27" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label class="form-label" asp-for="Description">Report Description</label>
+                    <textarea class="form-control" asp-for="Description" placeholder="e.g. Multiple cars involved in the accident, close to Woodbridge Island..."
+                              style="height: 150px"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="mb-4">
+                    <label class="form-label" asp-for="Location">Location</label>
+                    <input class="form-control" asp-for="Location" placeholder="e.g. 17 Merriman Road, Stellenbosch" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label" asp-for="Category">Category of Report</label>
+                    <select class="form-select" asp-for="Category">
+                        <option value="Water and Sanitation">Water and Sanitation</option>
+                        <option value="Roads">Roads</option>
+                        <option value="Electricity">Electricity</option>
+                        <option value="Crime">Crime</option>
+                        <option value="Transport and Traffic">Transport and Traffic</option>
+                        <option value="Weather">Weather</option>
+                        <option value="Building and Planning">Building and Planning</option>
+                        <option value="Storms and Flooding">Storms and Flooding</option>
+                        <option value="Waste Services">Waste Services</option>
+                    </select>
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Attachment" class="form-label">Attach  Photo</label>
+                    <input asp-for="Attachment" class="form-control" type="file">
+                </div>
+
+            </div>
+            
+        </div>
+        <button type="submit" class="btn btn-dark w-100 btn-lg mt-4">Submit Report</button>
+        @if (success != null)
+        {
+            <div class="alert alert-success mt-3" role="alert">
+                @success
+            </div>
+        }
+    </div>
+</form>
+
