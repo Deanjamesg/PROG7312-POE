@@ -2,7 +2,255 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="hero" id="hero">
+    <div class="hero-background">
+        <img src="~/images/City.jpg" alt="" data-aos-duration="1000">
+    </div>
+
+    <div class="container">
+        <div class="row p-2">
+
+            <div class="col me-5">
+                <div class="container-fluid p-2">
+                    <h1 class="display-5 text-white fw-bold">This the Hero Section Title</h1>
+                    <p class="text-white text-opacity-75 mt-4 me-5 fw-semibold fs-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et turpis ex. Vestibulum ante ipsum primis in faucibus  Fusce ac orci at dolor consequat pretium porttitor eu eros. Sed rutrum risus at facilisis cursus. Aliquam ut purus pulvinar, fringilla ligula at, iaculis mauris.</p>
+                    <form asp-fragment="services">
+                        <button class="btn mt-5 btn-hero">
+                            Explore our Features
+                            <i class="bi ms-2 bi-arrow-right-circle"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="row h-100 align-items-center p-3">
+                    <div class="col">
+                        <div class="feature-card">
+                            <i class="bi bi-flag fs-1"></i>
+                            <p class="fs-5">
+                                Reported Issues
+                                <span class="badge ms-1" style="background-color: #00ffd8; color: black; font-weight: 400; font-size: 18px">New</span>
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="bi bi-calendar-date fs-1"></i>
+                            <p class="fs-5">Local Events</p>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="feature-card">
+                            <i class="bi bi-megaphone fs-1"></i>
+                            <p class="fs-5">Announcements</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="bi bi-clock fs-1"></i>
+                            <p class="fs-5">Service Request Status</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container p-0">
+        <div class="hero-stats-wrapper">
+            <div class="hero-stats">
+                <div class="data">73</div>
+                <div class="data-title">Reports in Progress</div>
+            </div>
+            <div class="hero-stats">
+                <div class="data">0</div>
+                <div class="data-title">Your Reports</div>
+            </div>
+        </div>
+        <form class="hero-stats-wrapper pt-4" asp-controller="Home" asp-action="Report">
+            <button class="btn btn-hero">
+                Report an Issue
+            </button>
+        </form>
+    </div>
+
+</section>
+
+<section class="service-status" id="service-status">
+    <div class="container">
+        <div class="service-status-header">
+            <h1 class="display-5 fw-normal">Status of Requested Services and Reports</h1>
+            <p class="mb-5 fs-5">View the progress and current status of your requested services and reports!</p>
+        </div>
+    </div>
+
+    <div class="container">
+    </div>
+
+</section>
+
+<section class="recent-reports">
+    <div class="container-fluid">
+        <div class="container">
+            <h1 class="display-4 fw-normal mb-3">Recent Reports</h1>
+            <p class="mb-5 fs-5">View the most recent reports made by your community.</p>
+        </div>
+        <div id="reportcarousel" class="carousel slide carousel-dark">
+            <div class="container">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="carousel-body">
+                            <img src="~/images/FallenTree.jpg" />
+                            <div class="container d-flex flex-column p-3 ms-5">
+                                <h1>Fallen Tree on Main road</h1>
+                                <p class="mt-2 fs-5">Four trees were uprooted within 200m on Frans Conradie Drive in Bellville.</p>
+                                <p class="mt-2 fs-5">
+                                    <i class="bi bi-geo-alt me-2"></i>
+                                    Frans Conradie Drive, Bellville, Cape Town
+                                </p>
+                                <p class="mt-2 fs-5">
+                                    <i class="bi bi-calendar me-2"></i>
+                                    13 July 2020
+                                </p>
+                                <p class="mt-2 fs-5">
+                                    Report Status:
+                                    <span class="badge ms-3 text-black fs-5 fw-normal p-3 bg-warning">In Progress</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-body">
+                            <img src="~/images/StormFlood.jpg" />
+                            <div class="container d-flex flex-column p-3 ms-5">
+                                <h1>High School Destroyed by Strong Winds</h1>
+                                <p class="mt-2 fs-5">School structures at Nomzamo High School in Strand were severely damaged during a heavy Cape storm.</p>
+                                <p class="mt-2 fs-5">
+                                    <i class="bi bi-geo-alt me-2"></i>
+                                    Nomzamo High School, Strand, Cape Town
+                                </p>
+                                <p class="mt-2 fs-5">
+                                    <i class="bi bi-calendar me-2"></i>
+                                    13 July 2020
+                                </p>
+                                <p class="mt-2 fs-5">
+                                    Report Status:
+                                    <span class="badge ms-3 fs-5 fw-normal p-3 bg-success">Complete</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-body">
+                            <img src="~/images/Traffic.png" />
+                            <div class="container d-flex flex-column p-3 ms-5">
+                                <h1>N2 closed in Cape Town due to ongoing protest action</h1>
+                                <p class="mt-2 fs-5">Traffic congestion in Cape Town has intensified following ongoing protest actions that have led to significant disruptions on the N2 highway.</p>
+                                <p class="mt-2 fs-5">
+                                    <i class="bi bi-geo-alt me-2"></i>
+                                    N2 Highway, Cape Town
+                                </p>
+                                <p class="mt-2 fs-5">
+                                    <i class="bi bi-calendar me-2"></i>
+                                    22 May 2025
+                                </p>
+                                <p class="mt-2 fs-5">
+                                    Report Status:
+                                    <span class="badge ms-3 text-black fs-5 fw-normal p-3 bg-danger">On Going</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#reportcarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#reportcarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="featured-services" id="services">
+    <div class="container services-header">
+        <h1 class="display-3 fw-normal border-bottom border-black border-2 pb-3">Featured Services</h1>
+        <p class="text-opacity-75 fs-5 my-4">
+            The featured services of this municipal application are designed to improve citizen engagement and streamline service delivery.
+            The platform provides an efficient and user-friendly way for residents to report issues, track the status of their service requests,
+            and access information on local events and announcements.
+        </p>
+    </div>
+
+    <div class="container">
+        <div class="row my-5">
+            <div class="col">
+                <div class="service-card">
+                    <h2 class="fs-3">Local Events and Announcements</h2>
+                    <p style="font-size: 18px;margin-top: 15px;">See what’s happening in your area and get the latest news from the municipality.</p>
+                    <button class="btn disabled fs-5 btn-danger ms-auto mt-auto">Coming Soon</button>
+                </div>
+            </div>
+            <div class="col">
+                <div class="service-card">
+                    <h2 class="fs-3">Request Municipal Services</h2>
+                    <p style="font-size: 18px;margin-top: 15px">Easily ask for municipal help for various needs, all in one place.</p>
+                    <button class="btn disabled fs-5 btn-danger ms-auto mt-auto">Coming Soon</button>
+                </div>
+            </div>
+            <div class="col">
+                <div class="service-card">
+                    <h2 class="fs-3">
+                        Status of Service Requests
+                    </h2>
+                    <p style="font-size: 18px;margin-top: 15px;">Keep tabs on your requests and see their progress from start to finish. </p>
+                    <button class="btn disabled fs-5 btn-danger ms-auto mt-auto">Coming Soon</button>
+                </div>
+            </div>
+            <div class="col">
+                <div class="service-card">
+                    <h2 class="fs-3">Report Issues</h2>
+                    <p style="font-size: 18px; margin-top: 15px;">Quickly report problems like potholes or power outages to the right municipal department.</p>
+                    <form class="ms-auto mt-auto" asp-controller="Home" asp-action="Report">
+                        <button type="submit" class="btn fs-5 btn-primary">Report Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact" id="contact">
+    <div class="container mt-5 d-flex flex-row">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.7780657581266!2d18.428810200000004!3d-33.921111100000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc5d89ebbfffff%3A0x607472ea9e6a0724!2sCape%20Town%20Civic%20Centre!5e0!3m2!1sen!2sza!4v1757440800391!5m2!1sen!2sza"
+                width="900"
+                height="650"
+                style="border:2px solid black; border-radius: 10px;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <div class="container ms-5">
+            <h1 class="display-3 fw-normal">Contact</h1>
+            <p class="fs-5">Need to contact us? Provided below are all our contact details.</p>
+            <div class="mt-5 fs-5">
+                <span class="fw-bold">Address: </span>
+                <span class="ms-2 d-inline-block">Civic Centre, 12 Hertzog Blvd, Foreshore, Cape Town, 8001</span>
+            </div>
+            <div class="mt-3 fs-5">
+                <span class="fw-bold">Open Times: </span>
+                <span class="ms-2 d-inline-block">Monday - Friday (08:00 - 18:00)</span>
+            </div>
+            <div class="mt-3 fs-5">
+                <span class="fw-bold">Email: </span>
+                <span class="ms-2 d-inline-block">municipality@gmail.com</span>
+            </div>
+            <div class="mt-3 fs-5">
+                <span class="fw-bold">Phone Number: </span>
+                <span class="ms-2 d-inline-block">(+27) 021 400 1111</span>
+            </div>
+        </div>
+    </div>
+</section>

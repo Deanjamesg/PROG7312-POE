@@ -1,22 +1,375 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 50px;
 }
+
+/* #region Footer */
+
+footer {
+    background-color: rgba(0,0,0,0.85);
+    padding: 25px;
+    margin-top: 100px;
+    color: white;
+}
+
+    footer p {
+        color: rgba(255,255,255, 0.75);
+        font-size: 16px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-weight: 500;
+    }
+
+footer h1 {
+    padding-left: 0px;
+    font-weight: 400;
+}
+
+    footer .col a {
+        text-decoration: none;
+        color: rgba(255,255,255, 0.75);
+        font-size: 16px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-weight: 500;
+        display: block;
+    }
+
+        footer a:hover {
+            color: rgba(255,255,255, 1);
+        }
+
+/* #endregion */
+
+/* #region Hero */
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    padding: 60px 0 60px 0;
+    border-bottom: 3px solid black;
+}
+
+    .hero .hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+        .hero .hero-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+    .hero .container {
+        position: relative;
+        z-index: 2;
+        padding: 40px 15px;
+    }
+
+    .hero .hero-stats-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        align-items: end;
+    }
+
+    .hero .hero-stats {
+        color: #00ffd8;
+        margin-left: 100px;
+        padding: 5px;
+    }
+
+        .hero .hero-stats .data {
+            display: flex;
+            justify-content: end;
+            color: #4cffe4;
+            margin-bottom: -7px;
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        .hero .hero-stats .data-title {
+            color: #c6c6c6;
+            font-size: 30px;
+            font-weight: 400;
+        }
+
+    .hero .feature-card {
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(255,255,255, 0.1);
+        backdrop-filter: blur(5px);
+        box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 10px 2px;
+        align-items: center;
+        text-align: center;
+        justify-content: space-around;
+        border: 1px solid rgba(255,255,255, 0.4);
+        border-radius: 15px;
+        padding: 25px;
+        color: white;
+        margin-bottom: 35px;
+        transition: transform 0.3s ease;
+        height: 175px;
+    }
+
+        .hero .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .btn-hero {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background-color: #4cffe4;
+            box-shadow: #00a189 0px 0px 5px 3px;
+            padding: 10px 30px 10px 30px;
+            width: fit-content;
+            font-size: 20px;
+            font-weight: 500;
+            transition: .5s;
+        }
+
+        .btn-hero i {
+            font-size: 30px;
+        }
+
+    .btn-hero:hover {
+        background-color: #4cffe4;
+        transform: translateX(15px);
+    }
+
+/* #endregion */
+
+/* #region Navbar */
+
+    .navbar {
+        backdrop-filter: blur(20px);
+        background-color: rgba(0,0,0, 0.75);
+        font-weight: 400;
+        font-size: 20px;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+        .navbar .navbar-nav {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            margin: 10px;
+            width: 100%;
+        }
+
+        .navbar .nav-item {
+            margin-right: 25px;
+        }
+
+            .navbar .nav-item a {
+                color: rgba(255, 255, 255, 0.6);
+                transition: 0.4s;
+            }
+
+            .navbar .nav-item a:hover {
+                background-color: transparent;
+                color: white;
+            }
+
+.navbar-brand {
+    font-size: 36px;
+    margin-left: 15px;
+}
+
+/* #endregion */
+
+/* #region Services */
+
+.featured-services {
+    background: #e9e9e9;
+    background: #d9d9d9;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 0px 100px 0px;
+    border-bottom: 3px solid black;
+}
+
+    .featured-services .services-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .featured-services .service-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        background: white;
+        height: 300px;
+        border: 2px solid transparent;
+        border-radius: 15px;
+        padding: 25px;
+        transition: .3s;
+        box-shadow: rgba(0,0,0,0.3) 0px 1px 10px 1px;
+    }
+
+        .featured-services .service-card .btn {
+            width: 150px;
+        }
+
+            .featured-services .service-card:hover {
+                background: rgb(90, 90, 90);
+                color: white;
+                transform: translateY(-10px);
+                box-shadow: rgba(0,0,0,0.5) 0px 5px 15px 2px;
+            }
+
+/* #endregion */
+
+/* #region Service Status */
+
+.service-status {
+    background: #585858;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px;
+    border-bottom: 3px solid black;
+}
+
+    .service-status .service-status-header {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: end;
+        text-align: center;
+    }
+
+/* #endregion */
+
+/* #region Recent Report */
+
+.recent-reports {
+    padding: 60px 0px 80px 0px;
+    border-bottom: 3px solid black;
+}
+
+.carousel-inner {
+    padding: 10px;
+    background: rgba(0,0,0, 0.85);
+    border: 0px solid rgba(0,0,0, 0.7);
+    border-radius: 20px;
+    height: 350px;
+    box-shadow: rgba(0,0,0, 0.7) 0px 5px 15px 5px;
+}
+
+.carousel-item {
+    height: 100%;
+}
+
+.carousel-body {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    color: white;
+}
+
+.carousel-body h1 {
+    font-size: 28px;
+}
+
+.carousel-inner .carousel-item .carousel-body img {
+    height: 100%;
+    width: 400px;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 2px solid white;
+}
+
+/* #endregion */
+
+/* #region Contact */
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    padding: 60px 0px 10px 0px;
+}
+
+/* #endregion */
+
+
+
+/* #region Municipality Notes *//*
+    
+    Utility Services:
+    - Electricity
+    - Water and Sanitation
+    - Solid Waste and General Cleaning
+    - Traffic Services
+    - Public Transport
+    - Traffic Fines
+    - Events Applications and Permits
+    - Film Shoots and Permits
+    - Tenders
+    - Enterprise and Investment
+
+    Reporting:
+    - Electricity Faults
+    - Cable Theft
+    - Land Invasion (Squatter Control)
+    - Roads and Stormwater (potholes / flooding / fallen trees / open manholes / chemical spills)
+    - Street People
+    - Traffic Signal Faults
+    - Vandalism
+
+    https://www.capetown.gov.za/General/Contact-us#Heading3
+
+    https://www.news24.com/SouthAfrica/News/pics-trees-uprooted-roofs-blown-off-and-school-damaged-as-storm-lashes-cape-20200713
+
+    https://www.capetownetc.com/news/n2-closed-in-cape-town-due-to-ongoing-protest-action/
+
+    https://www.capetown.gov.za/General/Contact-us
+
+    https://getbootstrap.com/docs/5.3/getting-started/introduction/
+
+    https://icons.getbootstrap.com/
+
+*//* #endregion */
