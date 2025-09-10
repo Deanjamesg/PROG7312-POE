@@ -1,11 +1,15 @@
 # PROG7312-POE
-**Varsity College PROG7312 Portfolio of Evidence**   
 
-**Part 1**  
+**Varsity College PROG7312 Portfolio of Evidence**
 
-**ST10378305**    
+**Part 1**
 
-**Dean James Greeff**  
+**ST10378305**
+
+**Dean James Greeff**
+
+**YouTube Link:**
+https://youtu.be/aklSD_ZtIVA
 
 ## **Prerequisites:**
 
@@ -19,7 +23,7 @@
 
 **Step 1:** Make a clone of the GitHub repository to your local computer from: https://github.com/Deanjamesg/PROG7312-POE.
 
-**Step 2:** Once you have successfully cloned the repository, open Visual Studio IDE, and then click "Open a project or solution". 
+**Step 2:** Once you have successfully cloned the repository, open Visual Studio IDE, and then click "Open a project or solution".
 
 **Step 3:** In the "Open Project" pop-up menu, browse your computer and locate the cloned repository, PROG7312-POE. In the cloned repository file open the next file, PROG7312 Web App, and lastly select the PROG7312 Web App.sln and click "Open".
 
