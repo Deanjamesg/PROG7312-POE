@@ -5,7 +5,7 @@
     @foreach (var post in Model)
     {
         <div class="col">
-            <div class="card h-100 post-card">
+            <div class="card h-100 post-card view-post-details" data-post-id="@post.Id">
                 <div class="card-header text-white d-flex justify-space-between align-items-center p-3" style="background:#3d3d3d;">
                     
                     @if (post.Type == PostType.LocalEvent)

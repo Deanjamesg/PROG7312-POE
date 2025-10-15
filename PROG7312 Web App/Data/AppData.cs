@@ -59,6 +59,23 @@ namespace PROG7312_Web_App.Data
             }
         }
 
+        public void LogSearchCategory(string category)
+        {
+            if (string.IsNullOrEmpty(category)) return;
+
+            lock (_lock)
+            {
+                if (SearchAnalytics.ContainsKey(category))
+                {
+                    SearchAnalytics[category]++;
+                }
+                else
+                {
+                    SearchAnalytics.Add(category, 1);
+                }
+            }
+        }
+
         // ----------------------------------------------------------------------------------------------------------------
 
         private void CreateSampleReportData()

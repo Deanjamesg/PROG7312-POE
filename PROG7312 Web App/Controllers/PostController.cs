@@ -13,12 +13,22 @@ namespace PROG7312_Web_App.Controllers
             return View(allPosts);
         }
 
-        public IActionResult CreatePost()
+        public IActionResult GetPostDetails(int Id)
         {
-            return View();
+            if (AppData.Instance.Posts.TryGetValue(Id, out Post post))
+            {
+                // Add the Clicked Post to the RecentlyViewed Stack
+                AppData.Instance.RecentlyViewed.Push(post);
+
+                // Return a New Partial View Designed for the Modal
+                return PartialView("_PostDetails", post);
+            }
+
+            return NotFound();
         }
 
         // https://learn.microsoft.com/en-us/dotnet/api/system.linq.iqueryable?view=net-8.0
+        // https://learn.microsoft.com/en-us/aspnet/web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-web-services
         public IActionResult FilterPosts(string searchTerm, string postType, string category, DateTime? startDate, DateTime? endDate,
             string sortOrder)
         {
@@ -42,6 +52,7 @@ namespace PROG7312_Web_App.Controllers
             if (Enum.TryParse<EventCategory>(category, out var eCat))
             {
                 query = query.Where(p => p.Category.HasValue && p.Category.Value == eCat);
+                AppData.Instance.LogSearchCategory(category); // Track this Search
             }
 
             // Filter by Event Date Range

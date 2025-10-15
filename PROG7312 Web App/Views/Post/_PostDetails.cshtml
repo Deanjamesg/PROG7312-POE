@@ -1,0 +1,37 @@
+﻿@model Post;
+@using PROG7312_Web_App.Models;
+
+@{
+    var badgeClass = Model.Type == PostType.LocalEvent ? "text-bg-success" : "text-bg-info";
+    var badgeText = Model.Type == PostType.LocalEvent ? "Local Event" : "Announcement";
+}
+<h5 class="mb-4">@Model.Title</h5>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <span class="badge p-3 @badgeClass" style="font-size:18px;">@badgeText</span>
+    <small class="text-muted">Published: @Model.DatePublished.ToString("dd MMMM yyyy")</small>
+</div>
+
+<p class="lead">@Model.Description</p>
+
+@if (Model.Type == PostType.LocalEvent)
+{
+    <hr class="my-4">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <h5 class="fw-bold"><i class="bi bi-tags-fill me-2"></i>Category</h5>
+            <p class="fs-5">@(Model.Category.HasValue? Model.Category.Value.GetDisplayName() : "N/A")</p>
+        </div>
+        <div class="col-md-6 mb-3">
+            <h5 class="fw-bold"><i class="bi bi-geo-alt-fill me-2"></i>Location</h5>
+            <p class="fs-5">@(string.IsNullOrEmpty(Model.Location) ? "To Be Announced" : Model.Location)</p>
+        </div>
+        <div class="col-md-6 mb-3">
+            <h5 class="fw-bold"><i class="bi bi-calendar-check-fill me-2"></i>Starts</h5>
+            <p class="fs-5">@(Model.StartTime.HasValue? Model.StartTime.Value.ToString("dd MMM yyyy, HH:mm") : "Date TBC")</p>
+        </div>
+        <div class="col-md-6 mb-3">
+            <h5 class="fw-bold"><i class="bi bi-calendar-x-fill me-2"></i>Ends</h5>
+            <p class="fs-5">@(Model.EndTime.HasValue? Model.EndTime.Value.ToString("dd MMM yyyy, HH:mm") : "Date TBC")</p>
+        </div>
+    </div>
+}
