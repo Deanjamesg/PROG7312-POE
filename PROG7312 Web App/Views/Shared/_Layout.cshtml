@@ -17,9 +17,9 @@
     <header>
         <nav class="navbar navbar-expand-md navbar-dark shadow fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="https://github.com/Deanjamesg/PROG7312-POE" target="_blank"><i class="bi bi-github" style="font-size: 40px"></i></a>
-                <a class="navbar-brand" href="https://youtu.be/aklSD_ZtIVA" target="_blank"><i class="bi bi-youtube" style="font-size: 40px"></i></a>
-                <a class="navbar-brand" asp-controller="Home" asp-action="Index">Municipality</a>
+                <a class="navbar-brand" href="https://github.com/Deanjamesg/PROG7312-POE" target="_blank"><i class="bi bi-github" style="font-size: 30px"></i></a>
+                <a class="navbar-brand" href="https://youtu.be/aklSD_ZtIVA" target="_blank"><i class="bi bi-youtube" style="font-size: 30px"></i></a>
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">City of Cape Town</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -33,19 +33,19 @@
                             <a class="nav-link" asp-controller="Home" asp-action="Index" asp-fragment="services">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="ViewReports">All Reports</a>
+                            <a class="nav-link" asp-controller="Report" asp-action="ViewReports">Community Reports</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Report">Report Issue</a>
+                            <a class="nav-link" asp-controller="Report" asp-action="CreateReport">Make a Report</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Post" asp-action="ViewPosts">Local Events</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Post" asp-action="ViewPosts">Announcements</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Index" asp-fragment="contact">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled">Local Events</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled">Announcements</a>
                         </li>
                     </ul>
                 </div>

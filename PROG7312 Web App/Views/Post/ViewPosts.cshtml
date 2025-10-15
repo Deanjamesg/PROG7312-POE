@@ -1,0 +1,65 @@
+﻿@using PROG7312_Web_App.Models;
+@model List<Post>;
+
+
+<div class="posts">
+    <h1 class="display-3 fw-normal">Local Events & Announcements</h1>
+    <div class="container mt-5">
+        <div class="input-group input-group-lg">
+            <input type="text" placeholder="Search" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+            <span class="input-group-text" id="inputGroup-sizing-lg">Search</span>
+        </div>
+        <div class="posts-filters">
+            <div class="filter-item me-3">
+                <label class="form-label">Local Events or Announcements</label>
+                <select class="form-select">
+                    <option value="All Posts">All Posts</option>
+                    <option value="Local Events">Local Events</option>
+                    <option value="Announcements">Announcements</option>
+                </select>
+                <span class="text-danger"></span>
+            </div>
+            <div class="filter-item ms-3">
+                <label class="form-label">Local Event Category</label>
+                <select class="form-select">
+                    <option value="All Events">All Events</option>
+                    <option value="Culture and Creativity">Culture and Creativity</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Business and Innovation">Business and Innovation</option>
+                    <option value="Environment">Environment</option>
+                    <option value="Community">Community</option>
+                </select>
+                <span class="text-danger"></span>
+            </div>
+            <div class="filter-item ms-3 mb-2">
+                <label class="form-label">Select Date Range</label>
+                <div class="input-group">
+                    <input type="date" id="startDate" class="form-control" aria-label="Start Date">
+                    <span class="input-group-text">to</span>
+                    <input type="date" id="endDate" class="form-control" aria-label="End Date">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                <h1>@item.Title</h1>
+            </div>
+            <div class="card-body">
+                <p>@item.Description</p>
+                <p>@item.Type.GetDisplayName()</p>
+                <p>@item.DatePublished.ToString()</p>
+                @if (item.Category.HasValue)
+                {
+                    <p>@item.Category.Value.GetDisplayName()</p>
+                }
+            </div>
+        </div>
+    }
+</div>
