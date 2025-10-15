@@ -29,7 +29,7 @@
                         <div class="data-title">Reports in Progress</div>
                     </div>
                 </div>
-                <form class="hero-stats-wrapper pt-4" asp-controller="Home" asp-action="Report">
+                <form class="hero-stats-wrapper pt-4" asp-controller="Report" asp-action="CreateReport">
                     <button class="btn btn-hero-stats">
                         Want to Report Something?
                     </button>
@@ -237,7 +237,9 @@
                 <div class="service-card">
                     <h2 class="fs-3">Local Events and Announcements</h2>
                     <p style="font-size: 18px;margin-top: 15px;">See what’s happening in your area and get the latest news from the municipality.</p>
-                    <button class="btn disabled fs-5 btn-danger ms-auto mt-auto">Coming Soon</button>
+                    <form class="ms-auto mt-auto" asp-controller="Post" asp-action="ViewPosts">
+                        <button type="submit" class="btn fs-5 btn-primary">View</button>
+                    </form>
                 </div>
             </div>
             <div class="col">
@@ -260,8 +262,8 @@
                 <div class="service-card">
                     <h2 class="fs-3">Report Issues</h2>
                     <p style="font-size: 18px; margin-top: 15px;">Quickly report problems like potholes or power outages to the right municipal department.</p>
-                    <form class="ms-auto mt-auto" asp-controller="Home" asp-action="Report">
-                        <button type="submit" class="btn fs-5 btn-primary">Report Now</button>
+                    <form class="ms-auto mt-auto" asp-controller="Report" asp-action="CreateReport">
+                        <button type="submit" class="btn fs-5 btn-warning">Report Now</button>
                     </form>
                 </div>
             </div>

@@ -1,0 +1,47 @@
+﻿@using PROG7312_Web_App.Models
+@model List<Post>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-xl-2 g-5">
+    @foreach (var post in Model)
+    {
+        <div class="col">
+            <div class="card h-100 post-card">
+                <div class="card-header text-white d-flex justify-space-between align-items-center p-3" style="background:#3d3d3d;">
+                    
+                    @if (post.Type == PostType.LocalEvent)
+                    {
+                        <span class="badge text-bg-success p-3" style="font-size:16px;">Local Event</span>
+                    }
+                    else
+                    {
+                        <span class="badge text-bg-info p-3" style="font-size:16px;">Announcement</span>
+                    }
+                    <h5 class="card-title ms-3 mb-0">@post.Title</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">@post.Description</p>
+
+                    @if (post.Type == PostType.LocalEvent)
+                    {
+                        <hr>
+                        <p class="fs-4 fw-medium mb-3">
+                            @(post.Category.HasValue? post.Category.Value.GetDisplayName() : "N/A")
+                        </p>
+                        <p class="card-text fs-5 mb-3">
+                            <i class="bi bi-geo-alt-fill fs-4 me-2"></i>
+                            @(string.IsNullOrEmpty(post.Location) ? "TBA" : post.Location)
+                        </p>
+                        <p class="card-text fs-5">
+                            <i class="bi bi-calendar-event-fill fs-4 me-2"></i>
+                            <strong>Event Date:</strong>
+                            @(post.StartTime.HasValue? post.StartTime.Value.ToString("dd MMM yyyy, HH:mm") : "Date TBC")
+                        </p>
+                    }
+                </div>
+                <div class="card-footer bg-white border-top-0 card-footer-details">
+                    @post.DatePublished.ToString("dd MMMM yyyy")
+                </div>
+            </div>
+        </div>
+    }
+</div>
