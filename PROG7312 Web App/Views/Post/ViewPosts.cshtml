@@ -93,6 +93,22 @@
     </div>
 </div>
 
+<div class="modal fade" id="postDetailModal" tabindex="-1" aria-labelledby="postDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header text-white" style="background:#3d3d3d;">
+                <h1 class="modal-title fs-4" id="postDetailModalLabel">Post Details</h1>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-dark" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts {
     <script>
         $(document).ready(function() {
@@ -113,8 +129,6 @@
                 fetchPosts();
             });
 
-
-            // Ajax
             function fetchPosts() {
                 const searchData = {
                     searchTerm: $('#searchInput').val(),
@@ -147,6 +161,44 @@
                     }
                 });
             }
+            $('#postsContainer').on('click', '.view-post-details', function () {
+                const postId = $(this).data('post-id');
+                const modal = new bootstrap.Modal(document.getElementById('postDetailModal'));
+                const modalBody = $('#postDetailModal .modal-body');
+                const modalTitle = $('#postDetailModalLabel');
+
+                // Loading Spinner while Fetching Data
+                modalBody.html('<div class="d-flex justify-content-center p-5"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>');
+                modalTitle.text('Loading Details...');
+                modal.show();
+
+                // AJAX Call to Controller to get the Post Details
+                $.ajax({
+                    url: '@Url.Action("GetPostDetails", "Post")',
+                    type: 'GET',
+                    data: { id: postId },
+                    success: function (result) {
+                        modalBody.html(result);
+                        modalTitle.text('Post Details');
+                    },
+                    error: function () {
+                    modalBody.html('<p class="text-danger">Sorry, an error occurred while loading the details.</p>');
+                }
+            });
+        });
+
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const postIdFromUrl = urlParams.get('postId');
+
+        if (postIdFromUrl) {
+            const cardToClick = $(`.view-post-details[data-post-id='${postIdFromUrl}']`);
+            if (cardToClick.length) {
+                setTimeout(function() {
+                    cardToClick.trigger('click');
+                }, 100);
+            }
+        }
         });
     </script>
 }

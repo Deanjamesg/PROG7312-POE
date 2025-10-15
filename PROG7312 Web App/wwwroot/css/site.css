@@ -601,6 +601,7 @@ footer {
 
 
 
+
 /* #region Posts */
 
 .posts {
@@ -639,3 +640,14 @@ footer {
 
 /* #endregion */
 
+
+
+
+/* #region Recently Viewed */
+
+.recently-viewed {
+    background: #053b3d;
+    padding: 40px;
+}
+
+/* #endregion */
