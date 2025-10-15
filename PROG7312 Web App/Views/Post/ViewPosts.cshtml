@@ -1,65 +1,152 @@
 ﻿@using PROG7312_Web_App.Models;
 @model List<Post>;
 
+@{
+    ViewData["Title"] = "Local Events and Announcements";
+}
 
 <div class="posts">
-    <h1 class="display-3 fw-normal">Local Events & Announcements</h1>
-    <div class="container mt-5">
-        <div class="input-group input-group-lg">
-            <input type="text" placeholder="Search" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-            <span class="input-group-text" id="inputGroup-sizing-lg">Search</span>
-        </div>
-        <div class="posts-filters">
-            <div class="filter-item me-3">
-                <label class="form-label">Local Events or Announcements</label>
-                <select class="form-select">
-                    <option value="All Posts">All Posts</option>
-                    <option value="Local Events">Local Events</option>
-                    <option value="Announcements">Announcements</option>
-                </select>
-                <span class="text-danger"></span>
-            </div>
-            <div class="filter-item ms-3">
-                <label class="form-label">Local Event Category</label>
-                <select class="form-select">
-                    <option value="All Events">All Events</option>
-                    <option value="Culture and Creativity">Culture and Creativity</option>
-                    <option value="Sports">Sports</option>
-                    <option value="Business and Innovation">Business and Innovation</option>
-                    <option value="Environment">Environment</option>
-                    <option value="Community">Community</option>
-                </select>
-                <span class="text-danger"></span>
-            </div>
-            <div class="filter-item ms-3 mb-2">
-                <label class="form-label">Select Date Range</label>
-                <div class="input-group">
-                    <input type="date" id="startDate" class="form-control" aria-label="Start Date">
-                    <span class="input-group-text">to</span>
-                    <input type="date" id="endDate" class="form-control" aria-label="End Date">
+    <div class="container-fluid mt-4">
+        <div class="row">
+
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="sidebar-filters">
+                    <h1 class="mb-4"><i class="bi bi-funnel me-2"></i>Filters</h1>
+
+                    <div class="mb-5">
+                        <label for="postTypeFilter" class="form-label fs-4 fw-medium">Post Type</label>
+                        <select id="postTypeFilter" class="form-select fs-5">
+                            <option value="">All Posts</option>
+                            <option value="@PostType.LocalEvent">Local Events</option>
+                            <option value="@PostType.Announcement">Announcements</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-5">
+                        <label for="eventCategoryFilter" class="form-label fs-4 fw-medium">Event Category</label>
+                        <select id="eventCategoryFilter" class="form-select fs-5">
+                            <option value="">All Categories</option>
+                            @foreach (EventCategory cat in Enum.GetValues(typeof(EventCategory)))
+                            {
+                                <option value="@cat">@cat.GetDisplayName()</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-5">
+                        <label class="form-label fs-4 fw-medium">Date Range</label>
+                        <div class="input-group mb-4">
+                            <span class="input-group-text fs-5">From</span>
+                            <input type="date" id="startDate" class="form-control fs-5">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text fs-5">To</span>
+                            <input type="date" id="endDate" class="form-control fs-5">
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button id="resetFilters" class="btn btn-lg btn-dark">Reset All Filters</button>
+                    </div>
+
                 </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="container">
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <input type="search" id="searchInput" class="form-control form-control-lg" placeholder="Search events and announcements..." list="pastSearches">
+                                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                <datalist id="pastSearches">
+                                </datalist>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <label class="input-group-text" for="sortOrder">Sort By</label>
+                                <select id="sortOrder" class="form-select form-select-lg">
+                                    <option value="DatePublishedDesc">Most Recent</option>
+                                    <option value="DatePublishedAsc">Oldest First</option>
+                                    <option value="TitleAsc">Title (A-Z)</option>
+                                    <option value="CategoryAsc">Category</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="postsContainer">
+                        @await Html.PartialAsync("_PostList", Model)
+                    </div>
+                </div>
+
+
+                <div id="noResultsMessage" class="text-center p-5" style="display: none;">
+                    <i class="bi bi-emoji-frown" style="font-size: 3rem;"></i>
+                    <h3 class="mt-3">No Posts Found</h3>
+                    <p class="lead text-muted">Try adjusting your search or filter criteria.</p>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
 
+@section Scripts {
+    <script>
+        $(document).ready(function() {
 
-<div class="container">
-    @foreach (var item in Model)
-    {
-        <div class="card mb-3">
-            <div class="card-header">
-                <h1>@item.Title</h1>
-            </div>
-            <div class="card-body">
-                <p>@item.Description</p>
-                <p>@item.Type.GetDisplayName()</p>
-                <p>@item.DatePublished.ToString()</p>
-                @if (item.Category.HasValue)
-                {
-                    <p>@item.Category.Value.GetDisplayName()</p>
-                }
-            </div>
-        </div>
-    }
-</div>
+            let debounceTimeout;
+            $('#searchInput').on('keyup', function() {
+                clearTimeout(debounceTimeout);
+                debounceTimeout = setTimeout(fetchPosts, 400); // Wait 400ms after user stops typing
+            });
+
+            // Event Handlers for Filters and Sorting
+            $('#postTypeFilter, #eventCategoryFilter, #startDate, #endDate, #sortOrder').on('change', fetchPosts);
+
+            // Reset Filters Button Handler
+            $('#resetFilters').on('click', function() {
+                $('#postTypeFilter, #eventCategoryFilter, #sortOrder').prop('selectedIndex', 0);
+                $('#startDate, #endDate, #searchInput').val('');
+                fetchPosts();
+            });
+
+
+            // Ajax
+            function fetchPosts() {
+                const searchData = {
+                    searchTerm: $('#searchInput').val(),
+                    postType: $('#postTypeFilter').val(),
+                    category: $('#eventCategoryFilter').val(),
+                    startDate: $('#startDate').val(),
+                    endDate: $('#endDate').val(),
+                    sortOrder: $('#sortOrder').val()
+                };
+
+                // Make Call Controller and Get Results
+                $.ajax({
+                    url: '@Url.Action("FilterPosts", "Post")',
+                    type: 'GET',
+                    data: searchData,
+                    success: function(result) {
+                        $('#postsContainer').html(result);
+
+                        // Check if Returned Result is Empty and Show/Hide the "No Results"
+                        if ($(result).find('.post-card').length > 0) {
+                            $('#noResultsMessage').hide();
+                            $('#postsContainer').show();
+                        } else {
+                            $('#noResultsMessage').show();
+                            $('#postsContainer').hide();
+                        }
+                    },
+                    error: function() {
+                        alert('An error occurred while fetching data.');
+                    }
+                });
+            }
+        });
+    </script>
+}

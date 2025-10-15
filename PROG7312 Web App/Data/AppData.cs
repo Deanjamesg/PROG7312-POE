@@ -61,64 +61,6 @@ namespace PROG7312_Web_App.Data
 
         // ----------------------------------------------------------------------------------------------------------------
 
-        // Methods to Access, Manage and Manipulate the Stored Data
-
-        // Announcement Related Methods
-        public void GetAllAnnouncements()
-        {
-
-        }
-
-        public void GetAnnouncement()
-        {
-
-        }
-
-        public void AddAnnouncement()
-        {
-
-        }
-
-        public void DeleteAnnouncement()
-        {
-
-        }
-
-        public void UpdateAnnouncement()
-        {
-
-        }
-
-        // ----------------------------------------------------------------------------------------------------------------
-
-        // Local Event Related Methods
-        public void GetAllLocalEvents()
-        {
-
-        }
-
-        public void GetLocalEvent()
-        {
-
-        }
-
-        public void AddLocalEvent()
-        {
-
-        }
-
-        public void DeleteLocalEvent()
-        {
-
-        }
-
-        public void UpdateLocalEvent()
-        {
-
-        }
-
-        // ----------------------------------------------------------------------------------------------------------------
-
         private void CreateSampleReportData()
         {
             ReportNode node = new ReportNode();
@@ -129,7 +71,7 @@ namespace PROG7312_Web_App.Data
             node.Description = "Four trees were uprooted within 200m on Frans Conradie Drive in Bellville.\r\n\r\n";
             node.Category = "Storms and Flooding";
             node.Location = "Frans Conradie Drive, Bellville, Cape Town";
-            node.Attachment = "";
+            node.Attachment = "https://cdn.24.co.za/files/Cms/General/d/8480/0dc0670884c1440e84a792379a957796.jpg";
             node.Status = "In Progress";
 
             reportList.Add(node);
@@ -142,7 +84,7 @@ namespace PROG7312_Web_App.Data
             node.Description = "School structures at Nomzamo High School in Strand were severely damaged during a heavy Cape storm.\r\n\r\n";
             node.Category = "Storms and Flooding";
             node.Location = "Nomzamo High School, Strand, Cape Town";
-            node.Attachment = "";
+            node.Attachment = "https://cdn.24.co.za/files/Cms/General/d/8477/99054e139d1642f6937f05c3cce6233a.jpg";
             node.Status = "Complete";
 
             reportList.Add(node);
@@ -155,7 +97,7 @@ namespace PROG7312_Web_App.Data
             node.Description = "Traffic congestion in Cape Town has intensified following ongoing protest actions that have led to significant disruptions on the N2 highway.";
             node.Category = "Storms and Flooding";
             node.Location = "N2 Highway, Cape Town";
-            node.Attachment = "";
+            node.Attachment = "https://www.capetownetc.com/wp-content/uploads/2025/05/image-1280x720-2025-05-22T160916.113-1024x576.png";
             node.Status = "On Going";
 
             reportList.Add(node);
