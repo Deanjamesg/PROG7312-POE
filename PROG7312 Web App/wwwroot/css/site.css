@@ -281,8 +281,8 @@ footer {
     padding: 10px;
     background: rgba(0,0,0, 0.85);
     border: 0px solid rgba(0,0,0, 0.7);
-    border-radius: 20px;
-    height: 350px;
+    border-radius: 10px;
+    height: 275px;
     box-shadow: rgba(0,0,0, 0.35) 0px 0px 15px 2px;
 }
 
@@ -299,16 +299,20 @@ footer {
 }
 
     .carousel-body h1 {
-        font-size: 28px;
+        font-size: 24px;
     }
 
-.carousel-inner .carousel-item .carousel-body img {
-    height: 100%;
-    width: 400px;
-    object-fit: cover;
-    border-radius: 20px;
-    border: 2px solid white;
-}
+    .carousel-body p {
+        font-size: 18px;
+    }
+
+    .carousel-inner .carousel-item .carousel-body img {
+        height: 100%;
+        width: 400px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 0px solid white;
+    }
 
 .service-status {
     background: white;
