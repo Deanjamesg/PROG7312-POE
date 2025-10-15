@@ -2,14 +2,14 @@
 
 **Varsity College PROG7312 Portfolio of Evidence**
 
-**Part 1**
+**Part 2**
 
 **ST10378305**
 
 **Dean James Greeff**
 
-**YouTube Link:**
-https://youtu.be/aklSD_ZtIVA
+**YouTube:**
+[Link](https://youtu.be/Ld_veByKssc)
 
 ## **Prerequisites:**
 
@@ -39,12 +39,26 @@ https://youtu.be/aklSD_ZtIVA
 
 After the application launches in your web browser, you can use it just as a user would.
 
-**1. Navigate:** Use the navigation bar to move between the different pages such as: Home, Report Issue, and All Reports pages.
+1.  **Navigate:** Use the navigation bar to move between the different pages such as: Home, Report Issue, and All Reports pages.
 
-**2. Submit a Report:** Locate the Report Issue page in the navbar, fill out the form with the required information (name, title, description, etc.), and click the submit button.
+2.  **Explore Local Events and Announcements (Home Page):**
+    * **Recent Posts:** See the four most recently published events and announcements displayed in a grid directly on the home page.
+    * **Recently Viewed:** In the main hero section, find buttons displaying titles of posts you've viewed. This list is updated in real-time as you explore posts.
+    * **Recommendations:** Discover event recommendations based on your filtering patterns in the "Local Events and Announcements" page.
 
-**3. Success Message:** If the user has successfully entered all the report form information and submitted the report, a successful toast message will be displayed on that page.
+3.  **View Posts and Filter (Local Events and Announcements Page):**
+    * **Real-time Filters:** Navigate to the "Local Events and Announcements" page. Use the filters on the left (Post Type, Event Category, Date Range) and the search bar at the top to instantly refine the list of posts. The results update without a page refresh.
+    * **Sorting:** Sort the displayed posts by various criteria like publication date or title using the 'Sort By' dropdown.
+    * **View Details:** Click on any post card to open a modal pop-up displaying its full details. This action also adds the post to your "Recently Viewed" list.
+    * **Mobile Filters:** On smaller screens, the filters will be accessible via a "Show Filters" button that opens a side offcanvas menu.
 
-**4. Input Validation:** If the user has not filled in the necessary fields, the user will not be able to submit the form and beneath the fields will be error messages, informing the user of what needs to be filled in.
+4.  **Seamless Navigation to Details:**
+    * Clicking a "Recently Viewed" button on the Home page will take you directly to the "Local Events and Announcements" page and automatically open the detailed modal for that specific post.
 
-**5. View Reports:** Navigate to the report viewing page to see the reports you've submitted or the sample data that was pre-loaded. The data is only stored during the application's runtime.
+5.  **Submit a Report:** Locate the "Report Issue" page in the navbar, fill out the form with the required information (name, title, description, etc.), and click the submit button.
+
+6.  **Success Message:** If the user has successfully entered all the report form information and submitted the report, a successful toast message will be displayed on that page.
+
+7.  **Input Validation:** If the user has not filled in the necessary fields, the user will not be able to submit the form and beneath the fields will be error messages, informing the user of what needs to be filled in.
+
+8.  **View Reports:** Navigate to the report viewing page to see the reports you've submitted or the sample data that was pre-loaded. The data is only stored during the application's runtime.
