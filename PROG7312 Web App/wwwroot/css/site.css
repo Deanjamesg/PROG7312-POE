@@ -1,4 +1,13 @@
 
+:root {
+    --sea-color: #053b3d;
+    --logo-blue: #2596be;
+    --logo-orange: #ff9d0e;
+    --logo-pink: #ce0e6b;
+    --logo-bronze: #464604;
+    --logo-yellow: #caca00;
+}
+
 html {
     font-size: 14px;
 }
@@ -19,9 +28,12 @@ html {
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    /*    font-family: 'Roboto', sans-serif;*/
     margin-top: 50px;
-    background: white;
+    /*    background: white;*/
+    /*    background: #e4e4e4;*/
+    background: #eeeeee;
+        font-family: "Inter", sans-serif;
 }
 
 
@@ -218,12 +230,15 @@ footer {
 
 .navbar {
     backdrop-filter: blur(20px);
-    background-color: rgba(0,0,0, 0.75);
+/*    background-color: rgba(0,0,0, 0.75);*/
+    background-color: var(--sea-color);
     font-weight: 400;
     font-size: 20px;
     padding: 10px;
     display: flex;
     justify-content: space-between;
+    border-bottom: 2px solid white;
+    box-shadow: rgba(0,0,0,0.2) 0px 5px 15px 7px;
 }
 
     .navbar .navbar-nav {
@@ -238,8 +253,12 @@ footer {
         margin-right: 25px;
     }
 
+    .navbar .nav-item .nav-link.active {
+        color: white;
+    }
+
         .navbar .nav-item a {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255,255,255, 0.7);
             transition: 0.4s;
         }
 
@@ -249,9 +268,14 @@ footer {
             }
 
 .navbar-brand {
-    font-size: 36px;
-    margin-left: 15px;
+    color: rgba(255,255,255, 1);
+    font-size: 2rem;
+    margin-left: 1rem;
 }
+
+    .navbar-brand:hover {
+        color: white;
+    }
 
 /* #endregion */
 
@@ -262,6 +286,7 @@ footer {
 
 .news-section {
     background: white;
+    padding: 1rem 0rem;
 }
 
 
@@ -273,7 +298,7 @@ footer {
 /* #region Recent Reports & Services */
 
 .recent-reports {
-    padding: 60px 0px 40px 0px;
+    padding: 0.5rem 0rem;
     background: white;
 }
 
@@ -337,7 +362,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 80px 0px 80px 0px;
+    padding: 2rem 0rem;
 }
 
     .featured-services .services-header {
@@ -613,12 +638,13 @@ footer {
 }
 
 .sidebar-filters {
-    border: 2px solid black;
+/*    border: 2px solid black;*/
     border-radius: 10px;
     padding: 20px;
     position: sticky;
     overflow-y: auto;
     margin-left: 20px;
+    background: white;
 }
 
 .post-card {
@@ -635,7 +661,6 @@ footer {
     color: rgba(0,0,0,0.75);
     justify-self: end;
     align-self: end;
-    margin-top: 15px;
 }
 
 /* #endregion */
@@ -646,8 +671,9 @@ footer {
 /* #region Recently Viewed */
 
 .recently-viewed {
-    background: #053b3d;
-    padding: 40px;
+/*    background: #053b3d;*/
+    background: #2b8285;
+    padding: 2.5rem;
 }
 
 /* #endregion */

@@ -11,20 +11,20 @@
 
             <div class="col-lg-3 d-none d-lg-block">
                 <div class="sidebar-filters">
-                    <h1 class="mb-4"><i class="bi bi-funnel me-2"></i>Filters</h1>
+                    <h1 class="mb-4 fs-3 border-bottom border-black border-1 pb-3"><i class="bi bi-funnel me-2"></i>Filters</h1>
 
-                    <div class="mb-5">
-                        <label for="postTypeFilter" class="form-label fs-4 fw-medium">Post Type</label>
-                        <select id="postTypeFilter" class="form-select fs-5">
+                    <div class="mb-4">
+                        <label for="postTypeFilter" class="form-label fw-medium">Post Type</label>
+                        <select id="postTypeFilter" class="form-select">
                             <option value="">All Posts</option>
                             <option value="@PostType.LocalEvent">Local Events</option>
                             <option value="@PostType.Announcement">Announcements</option>
                         </select>
                     </div>
 
-                    <div class="mb-5">
-                        <label for="eventCategoryFilter" class="form-label fs-4 fw-medium">Event Category</label>
-                        <select id="eventCategoryFilter" class="form-select fs-5">
+                    <div class="mb-4">
+                        <label for="eventCategoryFilter" class="form-label fw-medium">Event Category</label>
+                        <select id="eventCategoryFilter" class="form-select">
                             <option value="">All Categories</option>
                             @foreach (EventCategory cat in Enum.GetValues(typeof(EventCategory)))
                             {
@@ -33,20 +33,27 @@
                         </select>
                     </div>
 
-                    <div class="mb-5">
-                        <label class="form-label fs-4 fw-medium">Date Range</label>
-                        <div class="input-group mb-4">
-                            <span class="input-group-text fs-5">From</span>
-                            <input type="date" id="startDate" class="form-control fs-5">
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label fw-medium">From</label>
+                                <div class="input-group mb-4">
+                                    <input type="date" id="startDate" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label class="form-label fw-medium">To</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">To</span>
+                                    <input type="date" id="endDate" class="form-control">
+                                </div>
+                            </div>
                         </div>
-                        <div class="input-group">
-                            <span class="input-group-text fs-5">To</span>
-                            <input type="date" id="endDate" class="form-control fs-5">
-                        </div>
+
                     </div>
 
                     <div class="d-grid">
-                        <button id="resetFilters" class="btn btn-lg btn-dark">Reset All Filters</button>
+                        <button id="resetFilters" class="btn btn-dark">Reset Filters</button>
                     </div>
 
                 </div>
@@ -54,9 +61,10 @@
 
             <div class="col-lg-9">
                 <div class="container">
+                    <h1 class="fw-medium fs-2 mb-4">Search for Events and Announcements</h1>
                     <div class="row mb-4">
                         <div class="col-md-8">
-                            <div class="input-group">
+                            <div class="input-group mb-3">
                                 <input type="search" id="searchInput" class="form-control form-control-lg" placeholder="Search events and announcements..." list="pastSearches">
                                 <span class="input-group-text"><i class="bi bi-search"></i></span>
                                 <datalist id="pastSearches">

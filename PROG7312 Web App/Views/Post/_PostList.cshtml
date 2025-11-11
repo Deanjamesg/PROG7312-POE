@@ -6,40 +6,44 @@
     {
         <div class="col">
             <div class="card h-100 post-card view-post-details" data-post-id="@post.Id">
-                <div class="card-header text-white d-flex justify-space-between align-items-center p-3" style="background:#3d3d3d;">
-                    
+                <div class="card-header d-flex justify-space-between align-items-center p-3">
                     @if (post.Type == PostType.LocalEvent)
                     {
-                        <span class="badge text-bg-success p-3" style="font-size:16px;">Local Event</span>
+                        <span class="badge fw-normal text-bg-success p-2" style="font-size:1.75rem;"><i class="bi bi-calendar-event"></i></span>
                     }
                     else
                     {
-                        <span class="badge text-bg-info p-3" style="font-size:16px;">Announcement</span>
+                        <span class="badge fw-normal text-bg-info p-2" style="font-size:1.5rem;"><i class="bi bi-megaphone-fill"></i></span>
                     }
-                    <h5 class="card-title ms-3 mb-0">@post.Title</h5>
+                    <h5 class="card-title fs-6 ms-3 mb-0">@post.Title</h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body border-bottom">
                     <p class="card-text">@post.Description</p>
 
                     @if (post.Type == PostType.LocalEvent)
                     {
                         <hr>
-                        <p class="fs-4 fw-medium mb-3">
+                        <p class="fs-5 fw-medium mb-2">
                             @(post.Category.HasValue? post.Category.Value.GetDisplayName() : "N/A")
                         </p>
-                        <p class="card-text fs-5 mb-3">
-                            <i class="bi bi-geo-alt-fill fs-4 me-2"></i>
-                            @(string.IsNullOrEmpty(post.Location) ? "TBA" : post.Location)
-                        </p>
-                        <p class="card-text fs-5">
-                            <i class="bi bi-calendar-event-fill fs-4 me-2"></i>
-                            <strong>Event Date:</strong>
-                            @(post.StartTime.HasValue? post.StartTime.Value.ToString("dd MMM yyyy, HH:mm") : "Date TBC")
-                        </p>
+                        <div class="row pb-3">
+                            <div class="col">
+                                <div class="card-text fs-6 mb-3">
+                                    <p class="">Location</p>
+                                    <i class="bi bi-geo-alt-fill fs-4 me-2"></i><span class="">@(string.IsNullOrEmpty(post.Location) ? "TBA" : post.Location)</span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card-text fs-6">
+                                    <p>Date</p>
+                                    <i class="bi bi-calendar-event-fill fs-4 me-2"></i><span class="">@(post.StartTime.HasValue? post.StartTime.Value.ToString("dd MMM yyyy - HH:mm") : "Date TBC")</span>
+                                </div>
+                            </div>
+                        </div>
                     }
                 </div>
-                <div class="card-footer bg-white border-top-0 card-footer-details">
-                    @post.DatePublished.ToString("dd MMMM yyyy")
+                <div class="card-footer my-2 bg-white border-top-0 card-footer-details me-1">
+                    <i><strong>Published: </strong>@post.DatePublished.ToString("dd MMMM yyyy")</i>
                 </div>
             </div>
         </div>
