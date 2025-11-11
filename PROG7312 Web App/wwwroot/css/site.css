@@ -6,6 +6,7 @@
     --logo-pink: #ce0e6b;
     --logo-bronze: #464604;
     --logo-yellow: #caca00;
+    --logo-yellow-light: #f2f200;
 }
 
 html {
@@ -28,12 +29,9 @@ html {
 }
 
 body {
-    /*    font-family: 'Roboto', sans-serif;*/
     margin-top: 50px;
-    /*    background: white;*/
-    /*    background: #e4e4e4;*/
     background: #eeeeee;
-        font-family: "Inter", sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 
@@ -42,37 +40,36 @@ body {
 /* #region Footer */
 
 footer {
-    background-color: rgba(0,0,0,0.85);
+    background-color: var(--sea-color);
     padding: 55px;
-    /*    margin-top: 100px;*/
-    color: white;
 }
 
     footer p {
-        color: rgba(255,255,255, 0.75);
+        color: white;
         font-size: 16px;
-        margin-top: 10px;
+        margin-top: 1rem;
         margin-bottom: 10px;
-        font-weight: 500;
+        font-weight: 400;
     }
 
     footer h1 {
+        color: var(--logo-yellow-light);
         padding-left: 0px;
         font-weight: 400;
     }
 
     footer .col a {
         text-decoration: none;
-        color: rgba(255,255,255, 0.75);
+        color: white;
         font-size: 16px;
-        margin-top: 10px;
+        margin-top: 1rem;
         margin-bottom: 10px;
-        font-weight: 500;
+        font-weight: 400;
         display: block;
     }
 
     footer a:hover {
-        color: rgba(255,255,255, 1);
+        color: rgba(255,255,255, 0.75);
     }
 
 /* #endregion */
@@ -295,69 +292,10 @@ footer {
 
 
 
-/* #region Recent Reports & Services */
+/* #region Municipal Services */
 
-.recent-reports {
-    padding: 0.5rem 0rem;
-    background: white;
-}
-
-.carousel-inner {
-    padding: 10px;
-    background: rgba(0,0,0, 0.85);
-    border: 0px solid rgba(0,0,0, 0.7);
-    border-radius: 10px;
-    height: 275px;
-    box-shadow: rgba(0,0,0, 0.35) 0px 0px 15px 2px;
-}
-
-.carousel-item {
-    height: 100%;
-}
-
-.carousel-body {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    width: 100%;
-    color: white;
-}
-
-    .carousel-body h1 {
-        font-size: 24px;
-    }
-
-    .carousel-body p {
-        font-size: 18px;
-    }
-
-.carousel-inner .carousel-item .carousel-body img {
-    height: 100%;
-    width: 400px;
-    object-fit: cover;
-    border-radius: 10px;
-    border: 0px solid white;
-}
-
-.service-status {
-    background: white;
-    color: black;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px;
-}
-
-/* #endregion */
-
-
-
-
-/* #region Featured Services */
-
-.featured-services {
-    background: #f3f3f3;
+.municipal-services {
+    background: #5c5c5c;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -365,7 +303,7 @@ footer {
     padding: 2rem 0rem;
 }
 
-    .featured-services .services-header {
+    .municipal-services .services-header {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -373,7 +311,7 @@ footer {
         text-align: center;
     }
 
-    .featured-services .service-card {
+    .municipal-services .service-card {
         display: flex;
         flex-direction: column;
         justify-content: start;
@@ -386,12 +324,13 @@ footer {
         box-shadow: rgba(0,0,0,0.3) 0px 1px 10px 1px;
     }
 
-        .featured-services .service-card .btn {
-            width: 150px;
+        .municipal-services .service-card .btn {
+            width: fit-content;
+            min-width: 150px;
         }
 
-        .featured-services .service-card:hover {
-            transform: translateY(-10px);
+        .municipal-services .service-card:hover {
+            transform: translateY(-5px);
             box-shadow: rgba(0,0,0,0.5) 0px 5px 15px 2px;
         }
 
