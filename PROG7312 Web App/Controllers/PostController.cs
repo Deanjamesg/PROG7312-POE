@@ -10,6 +10,8 @@ namespace PROG7312_Web_App.Controllers
         {
             var allPosts = AppData.Instance.Posts.Values.ToList();
 
+            ViewData["ActivePage"] = "ViewPosts";
+
             return View(allPosts);
         }
 

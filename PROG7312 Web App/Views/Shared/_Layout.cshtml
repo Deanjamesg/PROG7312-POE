@@ -17,6 +17,9 @@
 </head>
 <body>
     <header>
+        @{
+            var activePage = ViewData["ActivePage"] as string;
+        }
         <nav class="navbar navbar-expand-md fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand" title="City of Cape Town">
@@ -33,23 +36,20 @@
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav">
 
-                        <li class="nav-item">
-                            <a class="nav-link active" asp-controller="Home" asp-action="Index">Home</a>
+                        <li class="nav-item @(activePage == "Home" ? "active" : "")">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Index" asp-fragment="services">Services</a>
+                        <li class="nav-item @(activePage == "ServiceRequestStatus" ? "active" : "")">
+                            <a class="nav-link" asp-controller="ServiceRequest" asp-action="ServiceRequestStatus">Service Request Status</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Report" asp-action="ViewReports">Community Reports</a>
+                        <li class="nav-item @(activePage == "ViewReports" ? "active" : "")">
+                            <a class="nav-link" asp-controller="Report" asp-action="ViewReports">View Reports</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Report" asp-action="CreateReport">Make a Report</a>
+                        <li class="nav-item @(activePage == "RequestService" ? "active" : "")">
+                            <a class="nav-link" asp-controller="Report" asp-action="CreateReport">Report a Fault</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Post" asp-action="ViewPosts">Local Events</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Post" asp-action="ViewPosts">Announcements</a>
+                        <li class="nav-item @(activePage == "ViewPosts" ? "active" : "")">
+                            <a class="nav-link" asp-controller="Post" asp-action="ViewPosts">Events and Announcements</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Index" asp-fragment="contact">Contact</a>
@@ -105,6 +105,7 @@
             </div>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -2,12 +2,14 @@
 
 namespace PROG7312_Web_App.Controllers
 {
-    public class ServiceController : Controller
+    public class ServiceRequestController : Controller
     {
 
-        public IActionResult ServicePartial()
+        public IActionResult ServiceRequest()
         {
-            return PartialView("_Service");
+            ViewData["ActivePage"] = "ServiceRequest";
+
+            return View();
         }
 
         public IActionResult RequestServicePartial()

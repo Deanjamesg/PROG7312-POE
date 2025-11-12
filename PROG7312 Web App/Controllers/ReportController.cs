@@ -17,12 +17,14 @@ namespace PROG7312_Web_App.Controllers
                 reports.Add(currentNode);
                 currentNode = currentNode.Next;
             }
+            ViewData["ActivePage"] = "ViewReports";
 
             return View(reports);
         }
 
         public IActionResult CreateReport()
         {
+            ViewData["ActivePage"] = "RequestService";
             return View(new ReportViewModel());
         }
 

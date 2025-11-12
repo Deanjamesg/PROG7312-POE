@@ -1,6 +1,9 @@
 
 :root {
     --sea-color: #053b3d;
+    --sea-color-hover: #0a5356;
+    --sea-color-light: #d0d5e0;
+    --sea-color-secondary: #7d8d9a;
     --logo-blue: #2596be;
     --logo-orange: #ff9d0e;
     --logo-pink: #ce0e6b;
@@ -30,7 +33,8 @@ html {
 
 body {
     margin-top: 50px;
-    background: #eeeeee;
+/*    background: #eeeeee;*/
+    background: #f7f7f7;
     font-family: "Inter", sans-serif;
 }
 
@@ -111,44 +115,26 @@ footer {
         padding: 10px 15px;
     }
 
-    .hero .hero-stats-wrapper {
+    .hero .hero-wrapper {
         display: flex;
         flex-direction: column;
         justify-content: end;
         align-items: end;
     }
 
-    .hero .hero-stats {
-        margin-left: 100px;
-        padding: 5px;
-    }
-
-        .hero .hero-stats .data {
-            display: flex;
-            justify-content: end;
-            color: black;
-            margin-bottom: -7px;
-            font-size: 40px;
-            font-weight: 700;
-        }
-
-        .hero .hero-stats .data-title {
-            color: #414141;
-            font-size: 30px;
-            font-weight: 500;
-        }
-
-    .hero .btn-hero-stats {
+    .hero .btn-hero-help {
         background: white;
-        padding: 15px;
-        font-size: 20px;
+        background: var(--sea-color);
+        color:white;
+        padding: 1rem;
+        font-size: 1.25rem;
         font-weight: 500;
         box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 10px 2px;
         transition: .3s;
     }
 
-        .hero .btn-hero-stats:hover {
-            background: #f2f2f2;
+        .hero .btn-hero-help:hover {
+            background: var(--sea-color-hover);
         }
 
     .hero .feature-card {
@@ -247,12 +233,24 @@ footer {
     }
 
     .navbar .nav-item {
-        margin-right: 25px;
+        margin-right: 1.5rem;
+        border: 1px solid rgba(255,255,255,0.25);
+        padding: 0.15rem 0.25rem;
+        border-radius: 0.25rem;
+        font-size: 1rem;
     }
 
-    .navbar .nav-item .nav-link.active {
-        color: white;
-    }
+        .navbar .nav-item.active {
+            border: 2px solid rgba(255,255,255,0.75);
+        }
+
+        .navbar .nav-item.active .nav-link {
+            color: white;
+        }
+
+        .navbar .nav-item .nav-link.active {
+            color: white;
+        }
 
         .navbar .nav-item a {
             color: rgba(255,255,255, 0.7);
@@ -295,7 +293,7 @@ footer {
 /* #region Municipal Services */
 
 .municipal-services {
-    background: #5c5c5c;
+    background: var(--sea-color-secondary);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -318,7 +316,7 @@ footer {
         background: white;
         height: 300px;
         border: 2px solid transparent;
-        border-radius: 15px;
+        border-radius: .5rem;
         padding: 25px;
         transition: .3s;
         box-shadow: rgba(0,0,0,0.3) 0px 1px 10px 1px;
@@ -578,7 +576,8 @@ footer {
 
 .sidebar-filters {
 /*    border: 2px solid black;*/
-    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.25);
+    border-radius: 0.5rem;
     padding: 20px;
     position: sticky;
     overflow-y: auto;
@@ -610,7 +609,6 @@ footer {
 /* #region Recently Viewed */
 
 .recently-viewed {
-/*    background: #053b3d;*/
     background: #2b8285;
     padding: 2.5rem;
 }
