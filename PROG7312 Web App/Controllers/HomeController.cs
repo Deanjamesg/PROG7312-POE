@@ -57,7 +57,7 @@ namespace PROG7312_Web_App.Controllers
                     .Take(3)
                     .ToList();
             }
-
+            ViewData["ActivePage"] = "Home";
             return View(viewModel);
         }
 

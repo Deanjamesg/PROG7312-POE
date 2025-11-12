@@ -1,4 +1,17 @@
 
+:root {
+    --sea-color: #053b3d;
+    --sea-color-hover: #0a5356;
+    --sea-color-light: #d0d5e0;
+    --sea-color-secondary: #7d8d9a;
+    --logo-blue: #2596be;
+    --logo-orange: #ff9d0e;
+    --logo-pink: #ce0e6b;
+    --logo-bronze: #464604;
+    --logo-yellow: #caca00;
+    --logo-yellow-light: #f2f200;
+}
+
 html {
     font-size: 14px;
 }
@@ -19,9 +32,10 @@ html {
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
     margin-top: 50px;
-    background: white;
+/*    background: #eeeeee;*/
+    background: #f7f7f7;
+    font-family: "Inter", sans-serif;
 }
 
 
@@ -30,37 +44,36 @@ body {
 /* #region Footer */
 
 footer {
-    background-color: rgba(0,0,0,0.85);
+    background-color: var(--sea-color);
     padding: 55px;
-    /*    margin-top: 100px;*/
-    color: white;
 }
 
     footer p {
-        color: rgba(255,255,255, 0.75);
+        color: white;
         font-size: 16px;
-        margin-top: 10px;
+        margin-top: 1rem;
         margin-bottom: 10px;
-        font-weight: 500;
+        font-weight: 400;
     }
 
     footer h1 {
+        color: var(--logo-yellow-light);
         padding-left: 0px;
         font-weight: 400;
     }
 
     footer .col a {
         text-decoration: none;
-        color: rgba(255,255,255, 0.75);
+        color: white;
         font-size: 16px;
-        margin-top: 10px;
+        margin-top: 1rem;
         margin-bottom: 10px;
-        font-weight: 500;
+        font-weight: 400;
         display: block;
     }
 
     footer a:hover {
-        color: rgba(255,255,255, 1);
+        color: rgba(255,255,255, 0.75);
     }
 
 /* #endregion */
@@ -102,44 +115,26 @@ footer {
         padding: 10px 15px;
     }
 
-    .hero .hero-stats-wrapper {
+    .hero .hero-wrapper {
         display: flex;
         flex-direction: column;
         justify-content: end;
         align-items: end;
     }
 
-    .hero .hero-stats {
-        margin-left: 100px;
-        padding: 5px;
-    }
-
-        .hero .hero-stats .data {
-            display: flex;
-            justify-content: end;
-            color: black;
-            margin-bottom: -7px;
-            font-size: 40px;
-            font-weight: 700;
-        }
-
-        .hero .hero-stats .data-title {
-            color: #414141;
-            font-size: 30px;
-            font-weight: 500;
-        }
-
-    .hero .btn-hero-stats {
+    .hero .btn-hero-help {
         background: white;
-        padding: 15px;
-        font-size: 20px;
+        background: var(--sea-color);
+        color:white;
+        padding: 1rem;
+        font-size: 1.25rem;
         font-weight: 500;
         box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 10px 2px;
         transition: .3s;
     }
 
-        .hero .btn-hero-stats:hover {
-            background: #f2f2f2;
+        .hero .btn-hero-help:hover {
+            background: var(--sea-color-hover);
         }
 
     .hero .feature-card {
@@ -218,12 +213,15 @@ footer {
 
 .navbar {
     backdrop-filter: blur(20px);
-    background-color: rgba(0,0,0, 0.75);
+/*    background-color: rgba(0,0,0, 0.75);*/
+    background-color: var(--sea-color);
     font-weight: 400;
     font-size: 20px;
     padding: 10px;
     display: flex;
     justify-content: space-between;
+    border-bottom: 2px solid white;
+    box-shadow: rgba(0,0,0,0.2) 0px 5px 15px 7px;
 }
 
     .navbar .navbar-nav {
@@ -235,11 +233,27 @@ footer {
     }
 
     .navbar .nav-item {
-        margin-right: 25px;
+        margin-right: 1.5rem;
+        border: 1px solid rgba(255,255,255,0.25);
+        padding: 0.15rem 0.25rem;
+        border-radius: 0.25rem;
+        font-size: 1rem;
     }
 
+        .navbar .nav-item.active {
+            border: 2px solid rgba(255,255,255,0.75);
+        }
+
+        .navbar .nav-item.active .nav-link {
+            color: white;
+        }
+
+        .navbar .nav-item .nav-link.active {
+            color: white;
+        }
+
         .navbar .nav-item a {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255,255,255, 0.7);
             transition: 0.4s;
         }
 
@@ -249,9 +263,14 @@ footer {
             }
 
 .navbar-brand {
-    font-size: 36px;
-    margin-left: 15px;
+    color: rgba(255,255,255, 1);
+    font-size: 2rem;
+    margin-left: 1rem;
 }
+
+    .navbar-brand:hover {
+        color: white;
+    }
 
 /* #endregion */
 
@@ -262,6 +281,7 @@ footer {
 
 .news-section {
     background: white;
+    padding: 1rem 0rem;
 }
 
 
@@ -270,77 +290,18 @@ footer {
 
 
 
-/* #region Recent Reports & Services */
+/* #region Municipal Services */
 
-.recent-reports {
-    padding: 60px 0px 40px 0px;
-    background: white;
-}
-
-.carousel-inner {
-    padding: 10px;
-    background: rgba(0,0,0, 0.85);
-    border: 0px solid rgba(0,0,0, 0.7);
-    border-radius: 10px;
-    height: 275px;
-    box-shadow: rgba(0,0,0, 0.35) 0px 0px 15px 2px;
-}
-
-.carousel-item {
-    height: 100%;
-}
-
-.carousel-body {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    width: 100%;
-    color: white;
-}
-
-    .carousel-body h1 {
-        font-size: 24px;
-    }
-
-    .carousel-body p {
-        font-size: 18px;
-    }
-
-.carousel-inner .carousel-item .carousel-body img {
-    height: 100%;
-    width: 400px;
-    object-fit: cover;
-    border-radius: 10px;
-    border: 0px solid white;
-}
-
-.service-status {
-    background: white;
-    color: black;
+.municipal-services {
+    background: var(--sea-color-secondary);
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px;
+    padding: 2rem 0rem;
 }
 
-/* #endregion */
-
-
-
-
-/* #region Featured Services */
-
-.featured-services {
-    background: #f3f3f3;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 80px 0px 80px 0px;
-}
-
-    .featured-services .services-header {
+    .municipal-services .services-header {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -348,25 +309,26 @@ footer {
         text-align: center;
     }
 
-    .featured-services .service-card {
+    .municipal-services .service-card {
         display: flex;
         flex-direction: column;
         justify-content: start;
         background: white;
         height: 300px;
         border: 2px solid transparent;
-        border-radius: 15px;
+        border-radius: .5rem;
         padding: 25px;
         transition: .3s;
         box-shadow: rgba(0,0,0,0.3) 0px 1px 10px 1px;
     }
 
-        .featured-services .service-card .btn {
-            width: 150px;
+        .municipal-services .service-card .btn {
+            width: fit-content;
+            min-width: 150px;
         }
 
-        .featured-services .service-card:hover {
-            transform: translateY(-10px);
+        .municipal-services .service-card:hover {
+            transform: translateY(-5px);
             box-shadow: rgba(0,0,0,0.5) 0px 5px 15px 2px;
         }
 
@@ -613,12 +575,14 @@ footer {
 }
 
 .sidebar-filters {
-    border: 2px solid black;
-    border-radius: 10px;
+/*    border: 2px solid black;*/
+    border: 1px solid rgba(0,0,0,0.25);
+    border-radius: 0.5rem;
     padding: 20px;
     position: sticky;
     overflow-y: auto;
     margin-left: 20px;
+    background: white;
 }
 
 .post-card {
@@ -635,7 +599,6 @@ footer {
     color: rgba(0,0,0,0.75);
     justify-self: end;
     align-self: end;
-    margin-top: 15px;
 }
 
 /* #endregion */
@@ -646,8 +609,8 @@ footer {
 /* #region Recently Viewed */
 
 .recently-viewed {
-    background: #053b3d;
-    padding: 40px;
+    background: #2b8285;
+    padding: 2.5rem;
 }
 
 /* #endregion */

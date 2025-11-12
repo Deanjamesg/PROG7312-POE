@@ -26,15 +26,9 @@
             </div>
 
             <div class="col me-auto">
-                <div class="hero-stats-wrapper">
-                    <div class="hero-stats">
-                        <div class="data">73</div>
-                        <div class="data-title">Reports in Progress</div>
-                    </div>
-                </div>
-                <form class="hero-stats-wrapper pt-4" asp-controller="Report" asp-action="CreateReport">
-                    <button class="btn btn-hero-stats">
-                        Want to Report Something?
+                <form class="hero-wrapper pt-4" asp-controller="Report" asp-action="CreateReport">
+                    <button class="btn btn-hero-help">
+                        Request for Services
                     </button>
                 </form>
             </div>
@@ -74,16 +68,19 @@
 
 </section>
 
-<div class="recently-viewed">
-    <div class="container-fluid">
-        <div class="container">
-            @if (Model.RecentlyViewedPosts != null && Model.RecentlyViewedPosts.Any())
-            {
+@if (Model.RecentlyViewedPosts != null && Model.RecentlyViewedPosts.Any())
+{
+    <div class="recently-viewed">
+        <div class="container-fluid">
+            <div class="container">
                 <div class="text-center">
-                    <h3 class="text-white fw-light mb-3">
-                        <i class="bi bi-clock-history me-2"></i> Recently Viewed
+                    <h3 class="text-white fw-light mb-4">
+                        <i class="bi bi-clock-history me-3"></i>You Recently Viewed
                     </h3>
-                    <div class="d-flex flex-wrap justify-content-center gap-2">
+                </div>
+
+                <div class="text-center">
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
                         @foreach (var post in Model.RecentlyViewedPosts)
                         {
                             <a href="#" class="btn btn-light p-2 recently-viewed-link" data-post-id="@post.Id">
@@ -92,17 +89,18 @@
                         }
                     </div>
                 </div>
-            }
+
+            </div>
         </div>
     </div>
-</div>
-
+}
 
 <section class="news-section" id="news">
-    <div class="container d-flex justify-content-center mt-5">
-        <h1 class="display-5">Local News & Announcements</h1>
+    <div class="container pt-4 mb-4">
+        <h1 class="display-5 fw-medium">News</h1>
+        <h4>Local Events & Announcements</h4>
     </div>
-    <div class="container my-5">
+    <div class="container pb-5">
         <div class="row row-cols-1 row-cols-md-2 g-4">
 
             @if (Model.RecentPosts != null && Model.RecentPosts.Any())
@@ -110,16 +108,18 @@
                 @foreach (var post in Model.RecentPosts)
                 {
                     <div class="col">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-header text-white p-3 d-flex justify-content-between align-items-center" style="background:#3d3d3d;">
+                        <div class="card post-card h-100">
+                            <div class="card-header text-white p-3 d-flex justify-content-between align-items-center" style="background:var(--logo-blue);">
                                 <h5 class="mb-0 text-truncate">@post.Title</h5>
                             </div>
                             <div class="card-body d-flex flex-column">
                                 <p class="card-text flex-grow-1">@post.Description</p>
-                                <a asp-controller="Post" asp-action="ViewPosts" class="btn btn-outline-primary align-self-start mt-3">Read More</a>
-                            </div>
-                            <div class="card-footer text-muted" style="font-size: 0.9rem;">
-                                Published: @post.DatePublished.ToString("dd MMMM yyyy")
+                                <div class="d-flex flex-row justify-content-between align-items-end">
+                                    <a asp-controller="Post" asp-action="ViewPosts" class="btn btn-outline-primary align-self-start mt-3">Read More</a>
+                                    <div class="text-muted" style="font-size: 0.9rem;">
+                                        Published: @post.DatePublished.ToString("dd MMMM yyyy")
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -137,30 +137,30 @@
 
 @if (Model.RecommendedPosts != null && Model.RecommendedPosts.Any())
 {
-    <section class="recommendations-section bg-light py-5">
+    <section class="py-5">
         <div class="container">
-            <div class="d-flex align-items-center mb-4">
-                <i class="bi bi-star-fill fs-2 text-warning me-3"></i>
-                <h2 class="display-5 mb-0">Recommended @Model.RecommendationReason</h2>
+            <div class="d-flex align-items-center mb-5">
+                <i class="bi bi-star-fill fs-2 me-3" style="color: var(--logo-pink);"></i>
+                <h2 class="display-6 fs-2 mb-0">Recommended @Model.RecommendationReason</h2>
             </div>
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 @foreach (var post in Model.RecommendedPosts)
                 {
                     <div class="col">
                         <div class="card h-100 post-card view-post-details" data-post-id="@post.Id">
-                            <div class="card-body fs-5">
-                                <h4 class="card-title mb-4">@post.Title</h4>
-                                <p class="card-text mb-3 text-muted">
+                            <div class="card-body">
+                                <h4 class="card-title fs-5 mb-4">@post.Title</h4>
+                                <p class="card-text fs-6 mb-3 text-muted">
                                     <i class="bi bi-calendar-event me-2"></i>
                                     @(post.StartTime.HasValue? post.StartTime.Value.ToString("dd MMM yyyy") : "TBC")
                                 </p>
-                                <p class="card-text text-muted">
+                                <p class="card-text fs-6 text-muted">
                                     <i class="bi bi-geo-alt me-2"></i>
                                     @(post.Location ?? "TBA")
                                 </p>
                             </div>
                             <div class="card-footer bg-transparent my-2 border-0">
-                                <span class="badge bg-primary p-2 fw-normal fs-5">@post.Category?.GetDisplayName()</span>
+                                <span class="badge p-2 fw-normal fs-6" style="background: var(--logo-pink);">@post.Category?.GetDisplayName()</span>
                             </div>
                         </div>
                     </div>
@@ -185,122 +185,22 @@
     </div>
 </div>
 
-
-<section class="recent-reports">
-    <div class="container-fluid">
-        <div class="container mt-5">
-            <h1 class="display-5 fw-normal mb-3">Recent Reports & Requested Services</h1>
-            <p class="mb-5 fs-5">View the most recent reports made by your community.</p>
-        </div>
-        <div id="reportcarousel" class="carousel slide carousel-dark">
-            <div class="container">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="carousel-body">
-                            <img src="https://cdn.24.co.za/files/Cms/General/d/8480/0dc0670884c1440e84a792379a957796.jpg" />
-                            <div class="container ms-2 mt-1 d-flex flex-column justify-content-between">
-                                <h1>Fallen Tree on Main road</h1>
-                                <p>Four trees were uprooted within 200m on Frans Conradie Drive in Bellville.</p>
-                                <p>
-                                    <i class="bi bi-geo-alt me-2"></i>
-                                    Frans Conradie Drive, Bellville, Cape Town
-                                </p>
-                                <p>
-                                    <i class="bi bi-calendar me-2"></i>
-                                    13 July 2020
-                                </p>
-                                <p class="align-self-end">
-                                    <span class="badge text-black fs-5 fw-normal p-3 bg-warning">In Progress</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="carousel-body">
-                            <img src="https://cdn.24.co.za/files/Cms/General/d/8477/99054e139d1642f6937f05c3cce6233a.jpg" />
-                            <div class="container ms-2 mt-1 d-flex flex-column justify-content-between">
-                                <h1>High School Destroyed by Strong Winds</h1>
-                                <p>School structures at Nomzamo High School in Strand were severely damaged during a heavy Cape storm.</p>
-                                <p>
-                                    <i class="bi bi-geo-alt me-2"></i>
-                                    Nomzamo High School, Strand, Cape Town
-                                </p>
-                                <p>
-                                    <i class="bi bi-calendar me-2"></i>
-                                    13 July 2020
-                                </p>
-                                <p class="align-self-end">
-                                    <span class="badge fs-5 fw-normal p-3 bg-success">Complete</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="carousel-item">
-                        <div class="carousel-body">
-                            <img src="https://www.capetownetc.com/wp-content/uploads/2025/05/image-1280x720-2025-05-22T160916.113-1024x576.png" />
-                            <div class="container ms-2 mt-1 d-flex flex-column justify-content-between">
-                                <h1>N2 closed in Cape Town due to ongoing protest action</h1>
-                                <p>Traffic congestion in Cape Town has intensified following ongoing protest actions that have led to significant disruptions on the N2 highway.</p>
-                                <p>
-                                    <i class="bi bi-geo-alt me-2"></i>
-                                    N2 Highway, Cape Town
-                                </p>
-                                <p>
-                                    <i class="bi bi-calendar me-2"></i>
-                                    22 May 2025
-                                </p>
-                                <p class="align-self-end">
-                                    <span class="badge text-black fs-5 fw-normal p-3 bg-danger">On Going</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="carousel-control-prev" type="button" data-bs-target="#reportcarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#reportcarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="container mt-3">
-        <div class="service-status">
-            <p class="mb-3 fs-5">View the progress and current status of your requested services and reports!</p>
-            <form asp-controller="Report" asp-action="ViewReports">
-                <button class="btn btn-dark p-3 fs-5">
-                    View all Reports
-                </button>
-            </form>
-        </div>
-    </div>
-</section>
-
-
-<section class="featured-services" id="services">
+<section class="municipal-services" id="services">
     <div class="container services-header">
-        <h1 class="display-3 fw-normal border-bottom border-black border-2 pb-3">Featured Services</h1>
-        <p class="text-opacity-75 fs-5 my-4">
-            The featured services of this municipal application are designed to improve citizen engagement and streamline service delivery.
-            The platform provides an efficient and user-friendly way for residents to report issues, track the status of their service requests,
-            and access information on local events and announcements.
+        <h1 class="display-6 text-white fw-normal border-bottom border-white border-2 pb-3">Online Municipal Services</h1>
+        <p class="text-white fs-6 mt-3">
+            This platform is designed to improve citizen engagement and streamline service delivery. It provides an efficient way for residents to report issues, access local events, and track their service requests.
         </p>
     </div>
 
     <div class="container">
-        <div class="row my-5">
+        <div class="row my-4">
             <div class="col">
                 <div class="service-card">
                     <h2 class="fs-3">Local Events and Announcements</h2>
                     <p style="font-size: 18px;margin-top: 15px;">See what’s happening in your area and get the latest news from the municipality.</p>
                     <form class="ms-auto mt-auto" asp-controller="Post" asp-action="ViewPosts">
-                        <button type="submit" class="btn fs-5 btn-primary">View</button>
+                        <button type="submit" class="btn fs-6 p-2" style="background: var(--logo-orange); color:black;">View</button>
                     </form>
                 </div>
             </div>
@@ -308,7 +208,10 @@
                 <div class="service-card">
                     <h2 class="fs-3">Request Municipal Services</h2>
                     <p style="font-size: 18px;margin-top: 15px">Easily ask for municipal help for various needs, all in one place.</p>
-                    <button class="btn disabled fs-5 btn-danger ms-auto mt-auto">Coming Soon</button>
+                    <form class="ms-auto mt-auto" asp-controller="Post" asp-action="ViewPosts">
+                        <button class="btn fs-6 p-2" style="background: var(--logo-pink); color:white;">Request Services</button>
+                    </form>
+
                 </div>
             </div>
             <div class="col">
@@ -317,7 +220,7 @@
                         Status of Service Requests
                     </h2>
                     <p style="font-size: 18px;margin-top: 15px;">Keep tabs on your requests and see their progress from start to finish. </p>
-                    <button class="btn disabled fs-5 btn-danger ms-auto mt-auto">Coming Soon</button>
+                    <button class="btn fs-6 p-2 ms-auto mt-auto" style="background: var(--logo-blue); color:white;">View Request Status</button>
                 </div>
             </div>
             <div class="col">
@@ -325,7 +228,7 @@
                     <h2 class="fs-3">Report Issues</h2>
                     <p style="font-size: 18px; margin-top: 15px;">Quickly report problems like potholes or power outages to the right municipal department.</p>
                     <form class="ms-auto mt-auto" asp-controller="Report" asp-action="CreateReport">
-                        <button type="submit" class="btn fs-5 btn-warning">Report Now</button>
+                        <button type="submit" class="btn fs-6 p-2" style="background: var(--logo-yellow); color:black;">Report Now</button>
                     </form>
                 </div>
             </div>
@@ -338,30 +241,32 @@
     <div class="container mt-5 d-flex flex-row">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.7780657581266!2d18.428810200000004!3d-33.921111100000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc5d89ebbfffff%3A0x607472ea9e6a0724!2sCape%20Town%20Civic%20Centre!5e0!3m2!1sen!2sza!4v1757440800391!5m2!1sen!2sza"
                 width="900"
-                height="650"
-                style="border:2px solid black; border-radius: 10px;"
+                height="500"
+                style="border-radius: .75rem; border: 2px solid rgba(0,0,0,0.5);"
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade">
         </iframe>
         <div class="container ms-5">
-            <h1 class="display-3 fw-normal">Contact</h1>
-            <p class="fs-5">Need to contact us? Provided below are all our contact details.</p>
-            <div class="mt-5 fs-5">
+            <h1 class="display-3 fs-1 fw-normal">Contact</h1>
+            <p class="fs-6">Need to contact us? Provided below are all our contact details.</p>
+            <div class="mt-4 fs-6">
                 <span class="fw-bold">Address: </span>
-                <span class="ms-2 d-inline-block">Civic Centre, 12 Hertzog Blvd, Foreshore, Cape Town, 8001</span>
+                <span class="ms-1 d-inline-block">Civic Centre, 12 Hertzog Blvd, Foreshore, Cape Town, 8001</span>
             </div>
-            <div class="mt-3 fs-5">
-                <span class="fw-bold">Open Times: </span>
-                <span class="ms-2 d-inline-block">Monday - Friday (08:00 - 18:00)</span>
-            </div>
-            <div class="mt-3 fs-5">
+            <div class="mt-3 fs-6">
                 <span class="fw-bold">Email: </span>
-                <span class="ms-2 d-inline-block">municipality@gmail.com</span>
+                <span class="ms-1 d-inline-block">contact.us@capetown.gov.za</span>
             </div>
-            <div class="mt-3 fs-5">
+            <div class="mt-3 fs-6">
                 <span class="fw-bold">Phone Number: </span>
-                <span class="ms-2 d-inline-block">(+27) 021 400 1111</span>
+                <span class="ms-1 d-inline-block">0860 103 089</span>
+            </div>
+            <div class="mt-4 fs-6">
+                <p class="fs-5 fw-bold">Open Times:</p>
+                <p><span class="fw-bold">Monday to Friday:</span> 07:00 - 21:00</p>
+                <p><span class="fw-bold">Saturdays:</span> 08:00 - 14:00</p>
+                <p><span class="fw-bold">Sundays and Public Holidays:</span> 09:00 - 13:00</p>
             </div>
         </div>
     </div>
