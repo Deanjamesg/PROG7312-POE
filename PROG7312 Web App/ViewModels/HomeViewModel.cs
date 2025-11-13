@@ -4,10 +4,10 @@ namespace PROG7312_Web_App.ViewModels
 {
     public class HomeViewModel
     {
-        public List<Post> RecentPosts { get; set; } = new List<Post>();
-        public List<Post> RecentlyViewedPosts { get; set; } = new List<Post>();
+        public List<CityPost> RecentPosts { get; set; } = new List<CityPost>();
+        public List<CityPost> RecentlyViewedPosts { get; set; } = new List<CityPost>();
 
-        public List<Post> RecommendedPosts { get; set; } = new List<Post>();
+        public List<CityPost> RecommendedPosts { get; set; } = new List<CityPost>();
         public string? RecommendationReason { get; set; }
     }
 }

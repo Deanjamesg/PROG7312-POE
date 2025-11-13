@@ -1,0 +1,96 @@
+﻿@using PROG7312_Web_App.Models
+@using PROG7312_Web_App.Data
+@model ServiceRequest
+
+@{
+    string GetStatusBadgeClass(ServiceRequestStatus status)
+    {
+        return status switch
+        {
+            ServiceRequestStatus.PendingApproval => "text-bg-warning",
+            ServiceRequestStatus.Approved => "text-bg-primary",
+            ServiceRequestStatus.InProgress => "text-bg-info",
+            ServiceRequestStatus.Complete => "text-bg-success",
+            ServiceRequestStatus.Declined => "text-bg-danger",
+            _ => "text-bg-secondary"
+        };
+    }
+}
+
+@if (Model == null)
+{
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading"><i class="bi bi-x-circle-fill me-2"></i>Not Found</h4>
+        <p>Sorry, we couldn't find a service request with that ID. Please check the ID and try again.</p>
+    </div>
+}
+else
+{
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="mb-0">Status: <span class="badge @GetStatusBadgeClass(Model.Status)" style="font-size: 1.2rem;">@Model.Status.ToString()</span></h5>
+        <small class="text-muted">ID: @Model.Id</small>
+    </div>
+
+    <hr class="my-3">
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <h6 class="text-muted mb-1">Submitted By</h6>
+            <p class="fs-5">@Model.FirstName @Model.LastName</p>
+        </div>
+        <div class="col-md-6 mb-3">
+            <h6 class="text-muted mb-1">Contact Number</h6>
+            <p class="fs-5">@Model.ContactNumber</p>
+        </div>
+        <div class="col-md-6 mb-3">
+            <h6 class="text-muted mb-1">Category</h6>
+            <p class="fs-5">@Model.Category</p>
+        </div>
+        <div class="col-md-6 mb-3">
+            <h6 class="text-muted mb-1">Submitted On</h6>
+            <p class="fs-5">@Model.DateOfSubmission.ToString("dd MMMM yyyy, HH:mm")</p>
+        </div>
+        <div class="col-md-12 mb-3">
+            <h6 class="text-muted mb-1">Location</h6>
+            <p class="fs-5">@Model.Location</p>
+        </div>
+        <div class="col-md-12">
+            <h6 class="text-muted mb-1">Description</h6>
+            <p class="fs-5 bg-light border rounded-3 p-3">@Model.Description</p>
+        </div>
+    </div>
+
+    <hr class="my-4">
+    <h4 class="mb-3">Status Workflow</h4>
+        var currentStatus = Model.Status;
+
+        var nextSteps = ServiceRequestData.StatusWorkflowGraph.GetNeighbors(currentStatus);
+    <div class="row">
+        <div class="col-md-6">
+            <h6 class="text-muted mb-1">Current Status</h6>
+            <p class="fs-5">
+                <span class="badge @GetStatusBadgeClass(currentStatus)" style="font-size: 1.2rem;">
+                    @currentStatus.ToString()
+                </span>
+            </p>
+        </div>
+        <div class="col-md-6">
+            <h6 class="text-muted mb-1">Next Possible Statuses</h6>
+            @if (nextSteps.Count == 0)
+            {
+                <p class="fs-5 text-muted"><em>This is a final status.</em></p>
+            }
+            else
+            {
+                <ul class="list-unstyled fs-5">
+                    @foreach (var next in nextSteps)
+                    {
+                        <li>
+                            <i class="bi bi-arrow-right-short"></i> @next.ToString()
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+}

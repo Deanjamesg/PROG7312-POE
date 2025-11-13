@@ -35,24 +35,17 @@
 
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav">
-
-                        <li class="nav-item @(activePage == "Home" ? "active" : "")">
+                        <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item @(activePage == "ServiceRequestStatus" ? "active" : "")">
-                            <a class="nav-link" asp-controller="ServiceRequest" asp-action="ServiceRequestStatus">Service Request Status</a>
-                        </li>
-                        <li class="nav-item @(activePage == "ViewReports" ? "active" : "")">
-                            <a class="nav-link" asp-controller="Report" asp-action="ViewReports">View Reports</a>
-                        </li>
-                        <li class="nav-item @(activePage == "RequestService" ? "active" : "")">
-                            <a class="nav-link" asp-controller="Report" asp-action="CreateReport">Report a Fault</a>
-                        </li>
-                        <li class="nav-item @(activePage == "ViewPosts" ? "active" : "")">
-                            <a class="nav-link" asp-controller="Post" asp-action="ViewPosts">Events and Announcements</a>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="ServiceRequest" asp-action="AllServiceRequests">View All Service Requests</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Index" asp-fragment="contact">Contact</a>
+                            <a class="nav-link" asp-controller="ServiceRequest" asp-action="NewServiceRequest">Report a Fault</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="CityPost" asp-action="CityPost">Events and Announcements</a>
                         </li>
                     </ul>
                 </div>
@@ -93,8 +86,6 @@
                     <a href="https://unsplash.com/photos/city-during-day-xjJd9fu9OkM" target="_blank">Background Image of Cape Town City</a>
                     <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank">Bootstrap</a>
                     <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a>
-                    <a href="https://www.news24.com/SouthAfrica/News/pics-trees-uprooted-roofs-blown-off-and-school-damaged-as-storm-lashes-cape-20200713" target="_blank">News24 Uprooted Tree and Destroyed School Buildings</a>
-                    <a href="https://www.capetownetc.com/news/n2-closed-in-cape-town-due-to-ongoing-protest-action/" target="_blank">News24 Protest on N2</a>
                     <a href="https://medium.com/geekculture/building-a-linked-list-system-from-scratch-in-c-part-1-51aa6c68ea19" target="_blank">Linked Lists</a>
                 </div>
                 <div class="col">

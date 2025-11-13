@@ -19,16 +19,12 @@ namespace PROG7312_Web_App.Controllers
         {
             var viewModel = new HomeViewModel();
 
-            viewModel.RecentPosts = AppData.Instance.Posts.Values
-                                           .OrderByDescending(p => p.DatePublished)
-                                           .Take(4)
-                                           .ToList();
+            viewModel.RecentPosts = CityPostData.RecentNews.ToList();
 
-            viewModel.RecentlyViewedPosts = AppData.Instance.RecentlyViewed
-                                                   .Take(8)
-                                                   .ToList();
+            viewModel.RecentlyViewedPosts = CityPostData.RecentlyViewed.Take(8).ToList();
 
-            var searchAnalytics = AppData.Instance.SearchAnalytics;
+            var searchAnalytics = CityPostData.SearchAnalytics;
+
             string? favoriteCategory = null;
 
             if (searchAnalytics.Any())
@@ -36,28 +32,32 @@ namespace PROG7312_Web_App.Controllers
                 favoriteCategory = searchAnalytics.OrderByDescending(kvp => kvp.Value).First().Key;
             }
 
+            var allPosts = CityPostData.CityPostsById.Values;
+
             if (favoriteCategory != null && Enum.TryParse<EventCategory>(favoriteCategory, out var favCatEnum))
             {
                 viewModel.RecommendationReason = $"Because you like {favCatEnum.GetDisplayName()}";
-                viewModel.RecommendedPosts = AppData.Instance.Posts.Values
-                    .Where(p => p.Type == PostType.LocalEvent &&
-                                 p.Category.HasValue && p.Category.Value == favCatEnum &&
-                                 p.StartTime.HasValue && p.StartTime > DateTime.Now)
-                    .OrderBy(p => p.StartTime)
+
+                viewModel.RecommendedPosts = allPosts
+                    .Where(p => p.CityPostType == CityPostType.LocalEvent &&
+                                p.EventCategory.HasValue && p.EventCategory.Value == favCatEnum &&
+                                p.StartDate.HasValue && p.StartDate > DateTime.Now)
+                    .OrderBy(p => p.StartDate)
                     .Take(3)
                     .ToList();
             }
             else
             {
                 viewModel.RecommendationReason = "Upcoming in Your City";
-                viewModel.RecommendedPosts = AppData.Instance.Posts.Values
-                    .Where(p => p.Type == PostType.LocalEvent &&
-                                 p.StartTime.HasValue && p.StartTime > DateTime.Now)
-                    .OrderBy(p => p.StartTime)
+
+                viewModel.RecommendedPosts = allPosts
+                    .Where(p => p.CityPostType == CityPostType.LocalEvent &&
+                                p.StartDate.HasValue && p.StartDate > DateTime.Now)
+                    .OrderBy(p => p.StartDate)
                     .Take(3)
                     .ToList();
             }
-            ViewData["ActivePage"] = "Home";
+
             return View(viewModel);
         }
 

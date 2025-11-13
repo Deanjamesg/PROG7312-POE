@@ -8,7 +8,7 @@ namespace PROG7312_Web_App.Controllers
     {
         public IActionResult ViewPosts()
         {
-            var allPosts = AppData.Instance.Posts.Values.ToList();
+            var allPosts = AppDataOld.Instance.Posts.Values.ToList();
 
             ViewData["ActivePage"] = "ViewPosts";
 
@@ -17,10 +17,10 @@ namespace PROG7312_Web_App.Controllers
 
         public IActionResult GetPostDetails(int Id)
         {
-            if (AppData.Instance.Posts.TryGetValue(Id, out Post post))
+            if (AppDataOld.Instance.Posts.TryGetValue(Id, out Post post))
             {
                 // Add the Clicked Post to the RecentlyViewed Stack
-                AppData.Instance.RecentlyViewed.Push(post);
+                AppDataOld.Instance.RecentlyViewed.Push(post);
 
                 // Return a New Partial View Designed for the Modal
                 return PartialView("_PostDetails", post);
@@ -35,7 +35,7 @@ namespace PROG7312_Web_App.Controllers
             string sortOrder)
         {
             // Start with the Full List of Posts
-            var query = AppData.Instance.Posts.Values.AsQueryable();
+            var query = AppDataOld.Instance.Posts.Values.AsQueryable();
 
             // Filter by Search Term (Title or Description)
             if (!string.IsNullOrEmpty(searchTerm))
@@ -54,7 +54,7 @@ namespace PROG7312_Web_App.Controllers
             if (Enum.TryParse<EventCategory>(category, out var eCat))
             {
                 query = query.Where(p => p.Category.HasValue && p.Category.Value == eCat);
-                AppData.Instance.LogSearchCategory(category); // Track this Search
+                AppDataOld.Instance.LogSearchCategory(category); // Track this Search
             }
 
             // Filter by Event Date Range

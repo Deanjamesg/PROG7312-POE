@@ -10,7 +10,7 @@ namespace PROG7312_Web_App.Controllers
         {
             List<ReportNode> reports = new List<ReportNode>();
 
-            var currentNode = AppData.Instance.reportList.Head;
+            var currentNode = AppDataOld.Instance.reportList.Head;
 
             while (currentNode != null)
             {
@@ -54,7 +54,7 @@ namespace PROG7312_Web_App.Controllers
                 report.Location = model.Location;
                 report.Category = model.Category;
                 report.Status = "On Going";
-                AppData.Instance.reportList.Add(report);
+                AppDataOld.Instance.reportList.Add(report);
 
                 TempData["SuccessMessage"] = "Successfully submitted your report!";
 
