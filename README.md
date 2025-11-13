@@ -1,64 +1,235 @@
-# PROG7312-POE
+# 🏙️ Cape Town Municipal Services Web Application
 
-**Varsity College PROG7312 Portfolio of Evidence**
+### PROG7312 - POE
+### ST10378305
+### Dean James Greeff
 
-**Part 2**
+### [YouTube Link](https://youtu.be/8rbXeQMoR4M)
 
-**ST10378305**
+## 📋 Table of Contents
+
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Data Structures](#data-structures)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Usage Guide](#usage-guide)
+- [Project Structure](#project-structure)
+
+## ✨ Features
+
+### 🎫 City Posts & Events
+- Browse local events and city announcements
+- Filter by category, date range, and post type
+- Search functionality with live filtering
+- Personalized event recommendations based on viewing history
+- Recently viewed posts tracking
+
+### 🛠️ Service Request Management
+- Submit service requests for municipal issues (electricity, water, roads, etc.)
+- Track request status with unique reference numbers
+- Search requests by ID
+- View all service requests with detailed information
+- Status workflow validation using graph structure
+
+### 🏠 Home Dashboard
+- Recent news queue (displays 4 most recent announcements)
+- Recently viewed posts (up to 8 items)
+- Personalized event recommendations
+- Analytics-driven suggestions based on user preferences
+
+## 🚀 Technology Stack
+
+- **Framework:** ASP.NET Core MVC (.NET 8+)
+- **Language:** C#
+- **Frontend:** Bootstrap, CSS, RazorViews, HTMX, JavaScript
+- **Architecture:** MVC Pattern
+- **Data Storage:** In-memory with custom data structures
+
+## 🧠 Data Structures
+
+This application showcases the practical implementation of advanced data structures:
+
+| Data Structure | Purpose | Key Operations |
+|---------------|---------|----------------|
+| **Custom Binary Search Tree** | Service request storage | O(log n) search, sorted retrieval |
+| **Directed Graph** | Status workflow validation | State transition management |
+| **SortedDictionary** | Chronologically ordered posts | O(log n) insert, range queries |
+| **Dictionary + HashSet** | Category & title indexing | O(1) filtering and search |
+| **Queue** | Recent news display | FIFO, fixed size (4 items) |
+| **Stack** | Recently viewed tracking | LIFO, duplicate prevention |
+| **Dictionary** | Analytics tracking | O(1) counter increments |
+
+For detailed implementation analysis, see the source files in `/Models/` and `/Data/`.
+
+## 📥 Installation
+
+### Prerequisites
+
+- [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0) or higher
+- A code editor (Visual Studio 2022, Visual Studio Code, or Rider)
+- Git (for cloning the repository)
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/Deanjamesg/PROG7312-POE.git
+cd PROG7312-POE
+```
+
+### Step 2: Restore Dependencies
+
+```bash
+dotnet restore
+```
+
+### Step 3: Build the Project
+
+```bash
+dotnet build
+```
+
+## ▶️ Running the Application
+
+### Using the .NET CLI
+
+```bash
+dotnet run
+```
+
+The application will start and be available at:
+- HTTPS: `https://localhost:7234`
+
+### Using Visual Studio
+
+1. Open the solution file (`.sln`) in Visual Studio
+2. Press `F5` or click the "Run" button
+3. The application will launch in your default browser
+
+### Using Visual Studio Code
+
+1. Open the project folder in VS Code
+2. Press `F5` or use the "Run and Debug" panel
+3. Select ".NET Core Launch (web)" configuration
+
+## 📖 Usage Guide
+
+### Viewing City Posts and Events
+
+1. Navigate to **City Posts & Events** from the main menu
+2. Browse through announcements and local events
+3. Use the filter panel to:
+   - Search by keywords
+   - Filter by post type (Event/Announcement)
+   - Filter by event category (Sports, Culture, Environment, etc.)
+   - Set date ranges
+   - Sort results
+
+### Submitting a Service Request
+
+1. Go to **Report an Issue**
+2. Fill in the required information:
+   - First Name and Last Name
+   - Contact Number
+   - Description of the issue
+   - Category (select from dropdown)
+   - Location
+3. Click **Submit**
+4. Save your reference number for tracking
+
+### Tracking Service Requests
+
+1. Navigate to **Track Service Request**
+2. Enter your reference number (GUID) in the search box
+3. View the status of your request:
+   - Pending Approval
+   - Approved
+   - In Progress
+   - Complete
+   - Declined
+
+### Viewing All Service Requests
+
+1. Go to **Track Service Request**
+2. Click **View All Service Requests**
+3. Browse the complete list of requests
+4. Click on any request to view full details
+
+### Home Dashboard Features
+
+- **Recent News:** View the 4 most recent city announcements
+- **Recently Viewed:** See your last 8 viewed posts
+- **Recommendations:** Get personalized event suggestions based on your viewing history
+
+## 📁 Project Structure
+
+```
+PROG7312-Web-App/
+├── Controllers/
+│   ├── HomeController.cs           # Home page logic
+│   ├── CityPostController.cs       # City posts and events
+│   └── ServiceRequestController.cs # Service request handling
+├── Models/
+│   ├── CityPost.cs                 # City post model
+│   ├── ServiceRequest.cs           # Service request model
+│   ├── CustomBinarySearchTree.cs   # BST implementation
+│   └── CustomGraph.cs              # Graph implementation
+├── Data/
+│   ├── CityPostData.cs             # City post data layer
+│   └── ServiceRequestData.cs       # Service request data layer
+├── Views/
+│   ├── Home/
+│   ├── CityPost/
+│   ├── ServiceRequest/
+│   └── Shared/
+│       └── _Layout.cshtml          # Main layout template
+└── wwwroot/                        # Static files (CSS, JS, images)
+```
+
+## 🎯 Key Features Explained
+
+### Personalized Recommendations
+
+The application tracks which event categories you view most frequently and suggests similar upcoming events. The recommendation algorithm:
+
+1. Monitors event views via the `RecentlyViewed` stack
+2. Updates category counters in `SearchAnalytics` dictionary
+3. Identifies your favorite category
+4. Filters upcoming events by that category
+5. Falls back to generic "Upcoming Events" if no preference is detected
+
+### Status Workflow Validation
+
+Service requests follow a strict state machine enforced by a directed graph:
+
+```
+PendingApproval → Approved → InProgress → Complete
+       ↓             ↓
+   Declined     Declined
+```
+
+Invalid transitions (e.g., Complete → PendingApproval) are prevented by the graph structure.
+
+### Efficient Searching and Filtering
+
+Multiple indexing strategies enable fast queries:
+- **By Date:** SortedDictionary provides O(log n) date range queries
+- **By ID:** Dictionary provides O(1) direct lookup
+- **By Category:** HashSet index provides O(1) category filtering
+- **By Keywords:** Inverted index enables multi-term search
+
+
+## 👨‍💻 Author
 
 **Dean James Greeff**
+- GitHub: [@deanjamesg](https://github.com/deanjamesg)
 
-**YouTube:**
-[Link](https://youtu.be/Ld_veByKssc)
+## 🙏 Acknowledgments
 
-## **Prerequisites:**
+- Cape Town municipality for inspiration
+- Seed data based on actual Cape Town events and services
+- ASP.NET Core documentation and community
 
-- Visual Studio Community IDE
+---
 
-- .NET SDK 8.0 or later
-
-- Modern Web Browser ( Google Chrome, Brave, OperaGX, Microsoft Edge)
-
-## **How to Run Web Application:**
-
-**Step 1:** Make a clone of the GitHub repository to your local computer from: https://github.com/Deanjamesg/PROG7312-POE.
-
-**Step 2:** Once you have successfully cloned the repository, open Visual Studio IDE, and then click "Open a project or solution".
-
-**Step 3:** In the "Open Project" pop-up menu, browse your computer and locate the cloned repository, PROG7312-POE. In the cloned repository file open the next file, PROG7312 Web App, and lastly select the PROG7312 Web App.sln and click "Open".
-
-**Step 4:** Once the project has opened on your Visual Studio IDE, locate the top tool bar of Visual Studio, and click on the "Build" tab.
-
-**Step 5:** In the "Build" tab, there are various options. Select "Clean Solution". Once the solution has been successfully cleaned, open the "Build" tab again and select "Rebuild Solution".
-
-**Step 6:** Once the solution has been cleaned and rebuilt, locate the "Debug" tab in the top tool bar, and select "Start without Debugging".
-
-**Step 7:** The web application should open in a new tab of your browser, where you can now enjoy and explore the web application and its features.
-
-## **How to use the Web Application:**
-
-After the application launches in your web browser, you can use it just as a user would.
-
-1.  **Navigate:** Use the navigation bar to move between the different pages such as: Home, Report Issue, and All Reports pages.
-
-2.  **Explore Local Events and Announcements (Home Page):**
-    * **Recent Posts:** See the four most recently published events and announcements displayed in a grid directly on the home page.
-    * **Recently Viewed:** In the main hero section, find buttons displaying titles of posts you've viewed. This list is updated in real-time as you explore posts.
-    * **Recommendations:** Discover event recommendations based on your filtering patterns in the "Local Events and Announcements" page.
-
-3.  **View Posts and Filter (Local Events and Announcements Page):**
-    * **Real-time Filters:** Navigate to the "Local Events and Announcements" page. Use the filters on the left (Post Type, Event Category, Date Range) and the search bar at the top to instantly refine the list of posts. The results update without a page refresh.
-    * **Sorting:** Sort the displayed posts by various criteria like publication date or title using the 'Sort By' dropdown.
-    * **View Details:** Click on any post card to open a modal pop-up displaying its full details. This action also adds the post to your "Recently Viewed" list.
-    * **Mobile Filters:** On smaller screens, the filters will be accessible via a "Show Filters" button that opens a side offcanvas menu.
-
-4.  **Seamless Navigation to Details:**
-    * Clicking a "Recently Viewed" button on the Home page will take you directly to the "Local Events and Announcements" page and automatically open the detailed modal for that specific post.
-
-5.  **Submit a Report:** Locate the "Report Issue" page in the navbar, fill out the form with the required information (name, title, description, etc.), and click the submit button.
-
-6.  **Success Message:** If the user has successfully entered all the report form information and submitted the report, a successful toast message will be displayed on that page.
-
-7.  **Input Validation:** If the user has not filled in the necessary fields, the user will not be able to submit the form and beneath the fields will be error messages, informing the user of what needs to be filled in.
-
-8.  **View Reports:** Navigate to the report viewing page to see the reports you've submitted or the sample data that was pre-loaded. The data is only stored during the application's runtime.
+**Note:** This application uses in-memory data storage. All data will be reset when the application restarts. For production use, integrate a persistent database system like SQL Server or PostgreSQL.
