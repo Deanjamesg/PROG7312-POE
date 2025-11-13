@@ -1,0 +1,145 @@
+﻿@using PROG7312_Web_App.Models;
+@model List<CityPost>;
+
+@{
+    ViewData["Title"] = "Local Events and Announcements";
+}
+
+<div class="posts bg-white">
+    <div class="container-fluid mt-4">
+        <div class="row">
+
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="sidebar-filters shadow">
+                    <h1 class="mb-4 fs-3 border-bottom border-black border-1 pb-3"><i class="bi bi-funnel me-2"></i>Filters</h1>
+
+                    <form id="filterForm">
+                        <div class="mb-4">
+                            <label for="postTypeFilter" class="form-label fw-medium">Post Type</label>
+                            <select id="postTypeFilter" name="postType" class="form-select"
+                                    hx-get="/CityPost/FilterPosts"
+                                    hx-target="#postsContainer"
+                                    hx-include="#filterForm"
+                                    hx-trigger="change">
+                                <option value="">All Posts</option>
+                                <option value="@CityPostType.LocalEvent">Local Events</option>
+                                <option value="@CityPostType.Announcement">Announcements</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="eventCategoryFilter" class="form-label fw-medium">Event Category</label>
+                            <select id="eventCategoryFilter" name="eventCategory" class="form-select"
+                                    hx-get="/CityPost/FilterPosts"
+                                    hx-target="#postsContainer"
+                                    hx-include="#filterForm"
+                                    hx-trigger="change">
+                                <option value="">All Categories</option>
+                                @foreach (EventCategory cat in Enum.GetValues(typeof(EventCategory)))
+                                {
+                                    <option value="@cat">@cat.GetDisplayName()</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col">
+                                    <label class="form-label fw-medium">From</label>
+                                    <div class="input-group mb-4">
+                                        <input type="date" id="startDate" name="startDate" class="form-control"
+                                               hx-get="/CityPost/FilterPosts"
+                                               hx-target="#postsContainer"
+                                               hx-include="#filterForm"
+                                               hx-trigger="change">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label class="form-label fw-medium">To</label>
+                                    <div class="input-group">
+                                        <input type="date" id="endDate" name="endDate" class="form-control"
+                                               hx-get="/CityPost/FilterPosts"
+                                               hx-target="#postsContainer"
+                                               hx-include="#filterForm"
+                                               hx-trigger="change">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="button" id="resetFilters" class="btn btn-dark"
+                                    hx-get="/CityPost/FilterPosts"
+                                    hx-target="#postsContainer"
+                                    hx-include="#searchInput, #sortOrder">
+                                Reset Filters
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="container">
+                    <h1 class="fw-medium fs-2 mb-4">Search for Events and Announcements</h1>
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <div class="input-group mb-3">
+                                <input type="search" id="searchInput" name="searchTerm" class="form-control form-control-lg"
+                                       placeholder="Search events and announcements..."
+                                       hx-get="/CityPost/FilterPosts"
+                                       hx-target="#postsContainer"
+                                       hx-include="#filterForm, #sortOrder"
+                                       hx-trigger="keyup changed delay:500ms">
+                                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <label class="input-group-text" for="sortOrder">Sort By</label>
+                                <select id="sortOrder" name="sortBy" class="form-select form-select-lg"
+                                        hx-get="/CityPost/FilterPosts"
+                                        hx-target="#postsContainer"
+                                        hx-include="#filterForm, #searchInput"
+                                        hx-trigger="change">
+                                    <option value="DatePublishedDesc">Most Recent</option>
+                                    <option value="DatePublishedAsc">Oldest First</option>
+                                    <option value="TitleAsc">Title (A-Z)</option>
+                                    <option value="CategoryAsc">Category</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="postsContainer">
+                        @await Html.PartialAsync("_CityPostList", Model)
+                    </div>
+                </div>
+
+                <div id="noResultsMessage" class="text-center p-5" style="display: none;">
+                    <i class="bi bi-emoji-frown" style="font-size: 3rem;"></i>
+                    <h3 class="mt-3">No Posts Found</h3>
+                    <p class="lead text-muted">Try adjusting your search or filter criteria.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="postDetailModal" tabindex="-1" aria-labelledby="postDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header text-white" style="background:#3d3d3d;">
+                <h1 class="modal-title fs-4" id="postDetailModalLabel">Post Details</h1>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-dark" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

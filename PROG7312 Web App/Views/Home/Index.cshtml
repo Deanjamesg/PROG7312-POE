@@ -26,8 +26,8 @@
             </div>
 
             <div class="col me-auto">
-                <form class="hero-wrapper pt-4" asp-controller="Report" asp-action="CreateReport">
-                    <button class="btn btn-hero-help">
+                <form class="hero-wrapper pt-4" asp-controller="ServiceRequest" asp-action="NewServiceRequest" method="get">
+                    <button class="btn btn-hero-help" type="submit">
                         Request for Services
                     </button>
                 </form>
@@ -152,7 +152,7 @@
                                 <h4 class="card-title fs-5 mb-4">@post.Title</h4>
                                 <p class="card-text fs-6 mb-3 text-muted">
                                     <i class="bi bi-calendar-event me-2"></i>
-                                    @(post.StartTime.HasValue? post.StartTime.Value.ToString("dd MMM yyyy") : "TBC")
+                                    @(post.StartDate.HasValue? post.StartDate.Value.ToString("dd MMM yyyy") : "TBC")
                                 </p>
                                 <p class="card-text fs-6 text-muted">
                                     <i class="bi bi-geo-alt me-2"></i>
@@ -160,7 +160,7 @@
                                 </p>
                             </div>
                             <div class="card-footer bg-transparent my-2 border-0">
-                                <span class="badge p-2 fw-normal fs-6" style="background: var(--logo-pink);">@post.Category?.GetDisplayName()</span>
+                                <span class="badge p-2 fw-normal fs-6" style="background: var(--logo-pink);">@post.EventCategory?.GetDisplayName()</span>
                             </div>
                         </div>
                     </div>

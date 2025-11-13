@@ -2,13 +2,13 @@
 
 namespace PROG7312_Web_App.Data
 {
-    public sealed class AppData
+    public sealed class AppDataOld
     {
         // Application State and Singleton Logic
 
         // https://learn.microsoft.com/en-us/dotnet/api/system.lazy-1?view=net-8.0
-        private static readonly Lazy<AppData> instance = new Lazy<AppData>(() => new AppData());
-        public static AppData Instance { get { return instance.Value; } }
+        private static readonly Lazy<AppDataOld> instance = new Lazy<AppDataOld>(() => new AppDataOld());
+        public static AppDataOld Instance { get { return instance.Value; } }
 
         // ----------------------------------------------------------------------------------------------------------------
 
@@ -44,7 +44,7 @@ namespace PROG7312_Web_App.Data
         // ----------------------------------------------------------------------------------------------------------------
 
         // Constructor
-        private AppData()
+        private AppDataOld()
         {
             CreateSamplePostData();
             CreateSampleReportData();

@@ -1,3 +1,5 @@
+using PROG7312_Web_App.Data;
+
 namespace PROG7312_Web_App
 {
     public class Program
@@ -18,6 +20,10 @@ namespace PROG7312_Web_App
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            // Seeding Data
+            CityPostData.SeedCityPostData();
+            ServiceRequestData.SeedServiceRequestData();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
